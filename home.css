@@ -1,0 +1,307 @@
+body {
+  background-color: #fff5ec;
+}
+
+/*  @HEADER */
+
+/* navbar animation (hide while scrolling down) */
+.navbar.hidden {
+  transform: translateY(-100%);
+  transition: transform 0.5s ease;
+}
+
+/* navbar */
+.navbar {
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+/* Navbar items */
+/* .navbar .nav-item {
+  transition: all 0.5s ease;
+} */
+
+/* Navbar links */
+.navbar .nav-link {
+  /* color: #000000; */
+  font-size: 16px;
+  font-weight: 600;
+  transition: color 0.5s ease;
+}
+
+/* Navbar hover effect */
+.navbar .nav-item:hover .nav-link {
+  color: #efc81a;
+}
+
+/* Navbar login button */
+.navbar #login-button button {
+  background-color: transparent;
+  border-color: #2e266f;
+  color: #2e266f;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.5s ease;
+}
+
+/* Navbar login button hover effect */
+.navbar #login-button button:hover {
+  background-color: gray;
+  color: #ffffff;
+  border-color: gray;
+}
+
+/* Navbar background color change on scroll */
+@media (min-width: 992px) {
+  .navbar.scrolled {
+    background-color: #efc81a;
+  }
+  .navbar.scrolled .nav-link {
+    color: #ffffff;
+  }
+  .navbar.scrolled #login-button button {
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+  .navbar.scrolled #login-button button:hover {
+    background-color: transparent;
+  }
+}
+
+.navbar {
+  transition: all 0.1s ease-in-out;
+}
+
+.navbar .active {
+  text-decoration-line: underline;
+}
+
+/* navbar, edit color menu */
+.navbar .navbar-nav .nav-link {
+  color: #2e266f;
+}
+
+/* edit FULL header page */
+#header {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* edit header h1 */
+#header h1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 70px;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  color: #2e266f;
+}
+
+/* header grid, add column*/
+#header .col-6 img {
+  margin-left: 200px;
+}
+
+/* header main image */
+#header .background-1 {
+  position: absolute;
+  z-index: 1;
+}
+
+/* header main image background*/
+#header .background-2 {
+  position: relative;
+  left: -50px;
+}
+/* header main image background (connecting two backgrounds)*/
+#header .clone {
+  position: relative;
+  bottom: -20px;
+}
+
+/* search input */
+.input-group-text,
+.form-control {
+  border: none;
+  background-color: #ffffff;
+}
+
+#header .container {
+  z-index: 1;
+}
+
+/* right yellow line background */
+#header .line-background {
+  height: 100vh;
+  width: 300px;
+  position: absolute;
+  background-color: #efc81a;
+  z-index: 0;
+  right: 0;
+}
+/*  @END OF HEADER */
+
+/*  @NEW RECIPE / content-1 */
+
+/* add margin top and bottom of page */
+#new-recipe {
+  margin: 75px;
+}
+
+/* add vertical line & title above main picture */
+#new-recipe .title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 80px;
+  color: #3f3a3a;
+  border-left: solid 15px #efc81a;
+  padding-left: 30px;
+  margin-bottom: 100px;
+}
+
+/* main image background */
+#new-recipe .main-image-background {
+  height: 500px;
+  width: 400px;
+  background-color: #efc81a;
+  margin-top: -50px;
+  position: absolute;
+  left: 0;
+  border-radius: 0px 5px 5px 0px;
+}
+
+/* main image */
+#new-recipe .main-image {
+  width: 100%;
+  height: 500px;
+  position: relative;
+  top: 0px;
+  left: -30px;
+  object-fit: cover;
+  border-radius: 15px;
+  z-index: 1;
+}
+
+/* add line under title */
+.line-under-title {
+  border-bottom: 2px solid #6f6a40;
+  display: block;
+  width: 15%;
+  margin: 20px 0;
+}
+
+/* description beside image */
+#new-recipe h2 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 53px;
+  /* letter-spacing: 0.1em; */
+  color: #3f3a3a;
+}
+
+/* description beside image(2) */
+#new-recipe p {
+  font-size: 20px;
+  line-height: 32px;
+  /* letter-spacing: 0.04em; */
+  color: #3f3a3a;
+}
+
+/* button under description */
+#new-recipe .btn {
+  background-color: #efc81a;
+  color: white;
+  border-radius: 8px;
+  border: #efc81a;
+}
+
+/* button under description(2) */
+#new-recipe .btn-primary:hover {
+  background-color: gray;
+  color: #fff;
+}
+
+/*  @END NEW RECIPE / content-1 */
+
+/* @POPULAR RECIPE / content-2 */
+
+#popular-recipe {
+  margin-top: 100px;
+}
+
+#popular-recipe .title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 80px;
+  color: #3f3a3a;
+  border-left: solid 15px #efc81a;
+  padding-left: 30px;
+  margin-bottom: 100px;
+}
+
+#popular-recipe .clickable-image {
+  cursor: pointer;
+  height: 400px;
+  position: relative;
+}
+
+#popular-recipe .clickable-image img {
+  cursor: pointer;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+#popular-recipe .clickable-image:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+}
+
+#popular-recipe .image-title {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  margin: 20px;
+  text-shadow: 3px 0px 5px rgba(0, 0, 0, 0.29);
+
+  max-width: 150px; /* set the desired max-width of the container */
+  white-space: pre-wrap; /* allow the text to wrap and add space when it exceeds the max-width */
+  overflow: hidden; /* hide the text that overflows the container */
+  text-overflow: ellipsis; /* display an ellipsis when the text overflows the container */
+}
+/* @ END OF POPULAR RECIPE / content-2 */
+
+/* @ start footer css */
+footer {
+  margin-top: 100px;
+  background-color: #efc81a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  text-align: center;
+  position: relative;
+}
+
+footer h2 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 52px;
+  margin-bottom: -10px;
+  color: #2e266f;
+}
+
+footer p {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  text-align: center;
+  color: #707070;
+}
+/* @ end of footer css */

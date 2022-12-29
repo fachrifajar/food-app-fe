@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Food App Recipes</title>
+    <!-- ! bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous" />
+    <!-- ! connect font-awesome -->
+    <script
+      src="https://kit.fontawesome.com/03f4ff56cd.js"
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="home.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+      integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+      crossorigin="anonymous" />
+  </head>
+
+  <body>
+    <!-- ! Navbar -->
+    <nav class="navbar navbar-expand-md fixed-top" id="navbar-desktop">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#nav"
+          aria-controls="nav"
+          aria-label="Expand Navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav">
+            <li class="nav-item me-5">
+              <a href="/index.html" class="nav-link active" aria-current="page"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item me-5">
+              <a href="#" class="nav-link">Add Recipe</a>
+            </li>
+            <li class="nav-item me-5">
+              <a href="#" class="nav-link">Profile</a>
+            </li>
+          </ul>
+        </div>
+        <div id="login-button">
+          <a href="login.html"
+            ><button type="button" class="btn btn-outline-light">
+              Log In
+            </button></a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- ! header -->
+    <section id="header">
+      <!-- ! yellow right background -->
+      <div class="line-background"></div>
+      <div class="container">
+        <div class="row align-items-center">
+          <!-- ! left side -->
+          <div class="col-5">
+            <h1>Discover Recipe & Delicious Food</h1>
+            <div class="mt-4">
+              <form>
+                <div class="input-group">
+                  <span class="input-group-text" id="basic-addon1"
+                    ><i class="fa fa-search"></i
+                  ></span>
+                  <input
+                    class="form-control form-control-lg"
+                    type="search"
+                    placeholder="Search Recipe..."
+                    aria-label="Search"
+                    autocomplete="off" />
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- ! right side -->
+          <div class="col-6 offset-1">
+            <img
+              src="images/home/header-2.png"
+              class="background-1"
+              width="450px" />
+            <img
+              src="images/home/background-header-2.png"
+              class="background-2"
+              width="260px" />
+            <img
+              src="images/home/background-header-2.png"
+              class="background-2 clone"
+              width="260px" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ! new-recipe / content-1 -->
+    <section id="new-recipe">
+      <!-- ! title -->
+      <div class="container"><div class="title">New Recipe</div></div>
+
+      <!-- ! background -->
+      <div class="main-image-background"></div>
+      <!-- ! content -->
+      <div class="container">
+        <div class="row align-items-center">
+          <!-- ! left side -->
+          <div class="col-6">
+            <img
+              src="images/home/new-recipe-1.jpg"
+              class="main-image"
+              id="new-recipe-image-id" />
+          </div>
+          <!-- ! right side -->
+          <div class="col-5 offset-1">
+            <h2 id="new-recipe-title-id">
+              Healthy Juicy Chicken Burger <br />(Quick & Easy)
+            </h2>
+            <span class="line-under-title"></span>
+            <p id="new-recipe-description-id">
+              Quick + Easy Juicy Chicken Burger- Healthy Chicken Burger? That’s
+              right!
+            </p>
+            <p>
+              <button
+                class="btn btn-primary btn-lg"
+                type="button"
+                id="new-recipe-button-id">
+                Learn More
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ! popular-recipe /content-2 -->
+    <section id="popular-recipe">
+      <div class="container">
+        <div class="title">Popular Recipe</div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4">
+            <div class="clickable-image mb-4">
+              <img
+                src="images/home/chicken-kare.jpg"
+                height="100%"
+                width="100%" />
+              <h2 class="image-title">Chicken Curry</h2>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="clickable-image mb-4">
+              <img
+                src="images/home/bomb-chicken.jpg"
+                height="100%"
+                width="100%" />
+              <h2 class="image-title">Bomb Chicken</h2>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="clickable-image mb-4">
+              <img
+                src="images/home/banana-smoothie-pop.jpg"
+                height="100%"
+                width="100%" />
+              <h2 class="image-title">Banana Smoothie Pop</h2>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="clickable-image mb-4">
+              <img
+                src="images/home/caramel-white-cake.jpg"
+                height="100%"
+                width="100%" />
+              <h2 class="image-title">Caramel White Cake</h2>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="clickable-image mb-4">
+              <img
+                src="images/home/grilled-salmon.jpg"
+                height="100%"
+                width="100%" />
+              <h2 class="image-title">Grilled Salmon</h2>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="clickable-image mb-4">
+              <img
+                src="images/home/special-biryani.jpg"
+                height="100%"
+                width="100%" />
+              <h2 class="image-title">Special Biryani</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ! footer-->
+    <footer>
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h2 class="font-weight-bold">Eat, Cook, Repeat</h2>
+            <p class="my-4">Share your best recipe by uploading here!</p>
+            <div class="d-flex justify-content-center social-links">
+              <a href="#" class="mx-2">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="#" class="mx-2">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="mx-2">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="mx-2">
+                <i class="fab fa-facebook"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- end of footer -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
