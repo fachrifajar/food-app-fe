@@ -13,7 +13,7 @@
 //   }
 // });
 
-// Add animations to navbar (disappear while scroll & show while stop and scrolling to top)
+// !Add animations to navbar (disappear while scroll & show while stop and scrolling to top)
 let previousScrollPosition = window.scrollY;
 
 window.addEventListener("scroll", function () {
@@ -43,8 +43,9 @@ window.addEventListener("scroll", function () {
     navbar.classList.remove("hidden");
   }, 1000);
 });
+// !End of animations to navbar (disappear while scroll & show while stop and scrolling to top)
 
-// Add animations to new-recipe (auto-change content)
+// !Add animations to new-recipe (auto-change content)
 const content = [
   {
     image: "images/home/new-recipe-1.jpg",
@@ -88,10 +89,12 @@ function updateContent() {
 
 setInterval(updateContent, 3000); // update the content every 3 seconds
 
+// ! End of animations to new-recipe (auto-change content)
+
+//! detail-recipe (add alert to comment input)
 const sendButton = document.getElementById("send-button");
 const textarea = document.querySelector("textarea");
 sendButton.addEventListener("click", (event) => {
-
   if (textarea.value.length > 1) {
     alert("Your comments have been submitted!");
   } else {
@@ -100,3 +103,4 @@ sendButton.addEventListener("click", (event) => {
   // Clear the comment input text
   textarea.value = "";
 });
+//! End of detail-recipe (add alert to comment input)
