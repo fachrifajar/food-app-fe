@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Recipe | Food App Recipes</title>
+    <link rel="icon" href="images/main-logo.png" />
+    <!-- ! bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous" />
+    <!-- ! connect font-awesome -->
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+      crossorigin="anonymous" /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+      crossorigin="anonymous" />
+    <link rel="stylesheet" href="detail-recipe.css" />
+  </head>
+
+  <body>
+    <!-- ! Navbar -->
+    <nav class="navbar navbar-expand-md fixed-top" id="navbar-desktop">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#nav"
+          aria-controls="nav"
+          aria-label="Expand Navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav">
+            <li class="nav-item me-5">
+              <a href="/index.html" class="nav-link active" aria-current="page"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item me-5">
+              <a href="#" class="nav-link">Add Recipe</a>
+            </li>
+            <li class="nav-item me-5">
+              <a href="#" class="nav-link">Profile</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ! MAIN IMAGE -->
+    <section id="selected-recipe">
+      <div class="container">
+        <div class="title text-center">Salted Brown Butter Pancake</div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="selected-image mb-1">
+              <img src="images/home/pancake.jpg" />
+              <div class="icon-container">
+                <a href="#" class="icon-link"><i class="fas fa-heart"></i></a>
+                <a href="#" class="icon-link"><i class="fas fa-save"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ! MAIN DESCRIPTIONS -->
+    <section id="main-descriptions">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="ingredients-title mt-5">Ingredients</h2>
+            <ul class="ingredients mt-3">
+              <li><b>Butter:</b> 3 tablespoons salted butter</li>
+              <li><b>Egg:</b> 1 egg, at room temperature (very important)</li>
+              <li>
+                <b>Brown sugar:</b> 2 tablespoons brown sugar (or sub coconut
+                sugar)
+              </li>
+              <li><b>Milk:</b> 1 cup milk of choice</li>
+              <li><b>Flour:</b> 1 cup all purpose flour</li>
+              <li>
+                <b>Baking staples:</b> ½ tablespoon vanilla extract, 1
+                tablespoon baking powder, ¼ teaspoon salt
+              </li>
+            </ul>
+            <h2 class="video-step mt-5">
+              Video Step <br /><br />
+              <button
+                class="btn btn-primary btn-lg"
+                type="button"
+                data-toggle="modal"
+                data-target="#videoModal">
+                <i class="fas fa-play"></i>
+              </button>
+              <br /><br />
+              <button
+                class="btn btn-primary btn-lg"
+                type="button"
+                data-toggle="modal"
+                data-target="#videoModal">
+                <i class="fas fa-play"></i>
+              </button>
+              <br /><br />
+              <button
+                class="btn btn-primary btn-lg"
+                type="button"
+                data-toggle="modal"
+                data-target="#videoModal">
+                <i class="fas fa-play"></i>
+              </button>
+              <br /><br />
+              <button
+                class="btn btn-primary btn-lg"
+                type="button"
+                data-toggle="modal"
+                data-target="#videoModal">
+                <i class="fas fa-play"></i>
+              </button>
+            </h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ! COMMENTS -->
+    <section id="comments">
+      <div class="container">
+        <div class="row mt-5">
+          <div class="col-12 mt-5">
+            <form class="text-center">
+              <textarea
+                class="input-form"
+                placeholder="Comments :"
+                rows="5"
+                cols="100"></textarea>
+            </form>
+            <div class="text-center mt-3">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="button">
+                Send
+              </button>
+            </div>
+            <h2 class="comment-user mt-5">Comment</h2>
+          </div>
+          <div class="col-1">
+            <img src="images/home/dafault-pp.jpg" class="user-picture mt-4" />
+            <img src="images/home/dafault-pp.jpg" class="user-picture mt-4" />
+          </div>
+          <div class="col-4">
+            <p>
+              <br />
+              <b>Suparmoyo</b> <br />Superb tutorial, and the food looks
+              awesome!
+            </p>
+            <p>
+              <br />
+              <b>Jaler Pambudi</b> <br />This tutorial is newbie friendly!. So
+              clear
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ! footer-->
+    <footer>
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h2 class="font-weight-bold">Eat, Cook, Repeat</h2>
+            <p class="my-4">Share your best recipe by uploading here!</p>
+            <div class="d-flex justify-content-center social-links">
+              <a href="#" class="mx-2">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="#" class="mx-2">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="mx-2">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="mx-2">
+                <i class="fab fa-facebook"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- end of footer -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

@@ -13,7 +13,7 @@
 //   }
 // });
 
-// Add animations to navbar
+// Add animations to navbar (disappear while scroll & show while stop and scrolling to top)
 let previousScrollPosition = window.scrollY;
 
 window.addEventListener("scroll", function () {
@@ -88,3 +88,15 @@ function updateContent() {
 
 setInterval(updateContent, 3000); // update the content every 3 seconds
 
+const sendButton = document.getElementById("send-button");
+const textarea = document.querySelector("textarea");
+sendButton.addEventListener("click", (event) => {
+
+  if (textarea.value.length > 1) {
+    alert("Your comments have been submitted!");
+  } else {
+    alert("Comments can't be empty!");
+  }
+  // Clear the comment input text
+  textarea.value = "";
+});
