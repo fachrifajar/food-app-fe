@@ -1,5 +1,5 @@
 .left-side {
-  background-image: url(./images/main-background.jpg);
+  background-image: url(../images/main-background.jpg);
   background-size: cover;
   background-position: center;
   /* background-attachment: fixed; */
@@ -90,6 +90,11 @@ input[type="checkbox"]:checked {
   background: #efc81a;
   border-color: #efc81a;
   width: 400px;
+}
+
+.right-side .btn:hover {
+  background-color: rgba(239, 200, 26, 0.8);
+  border-color: rgba(239, 200, 26, 0.8);
 }
 
 .right-side .forgot-password {

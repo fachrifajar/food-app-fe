@@ -34,10 +34,6 @@ body {
   transition: all 0.1s ease-in-out;
 }
 
-.navbar .active {
-  text-decoration-line: underline;
-}
-
 /* navbar, edit color menu */
 .navbar .navbar-nav .nav-link {
   color: #2e266f;
@@ -50,60 +46,6 @@ body {
   align-items: center;
 }
 
-/* edit header h1 */
-#header h1 {
-  font-style: normal;
-  font-weight: 700;
-  font-size: 50px;
-  line-height: 70px;
-  display: flex;
-  align-items: center;
-  text-transform: capitalize;
-  color: #2e266f;
-}
-
-/* header grid, add column*/
-#header .col-6 img {
-  margin-left: 200px;
-}
-
-/* header main image */
-#header .background-1 {
-  position: absolute;
-  z-index: 1;
-}
-
-/* header main image background*/
-#header .background-2 {
-  position: relative;
-  left: -50px;
-}
-/* header main image background (connecting two backgrounds)*/
-#header .clone {
-  position: relative;
-  bottom: -20px;
-}
-
-/* search input */
-.input-group-text,
-.form-control {
-  border: none;
-  background-color: #ffffff;
-}
-
-#header .container {
-  z-index: 1;
-}
-
-/* right yellow line background */
-#header .line-background {
-  height: 100vh;
-  width: 300px;
-  position: absolute;
-  background-color: #efc81a;
-  z-index: 0;
-  right: 0;
-}
 /*  @END OF HEADER */
 
 /* @ SELECTED RECIPE */
@@ -198,7 +140,7 @@ body {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.btn {
+#send-button {
   background-color: #efc81a;
   border-color: #efc81a;
   color: white;
@@ -208,7 +150,7 @@ body {
   cursor: pointer;
 }
 
-.btn:hover {
+#send-button:hover {
   background-color: rgba(239, 200, 26, 0.8);
   border-color: rgba(239, 200, 26, 0.8);
 }
