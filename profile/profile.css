@@ -47,81 +47,49 @@ body {
 }
 /*  @END OF HEADER */
 
-#add-recipe {
-  height: 150vh;
+/* @ PROFILE */
+#profile {
+  height: 100vh;
 }
 
-#drop-zone {
-  background-color: #f6f5f4;
-  border-color: #f6f5f4;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  height: 400px;
-  width: 100%;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font: 20pt bold "Verdana";
-  position: relative;
-  margin-top: 200px;
+#profile .user-photo {
+  margin-top: 150px;
+  border-radius: 50%;
+  width: 140px;
+  height: 140px;
 }
 
-.add-photo img {
-  width: 50px;
-  height: 50px;
-}
-
-.add-photo p {
-  position: absolute;
-  padding-top: 100px;
-  color: #666666;
-
-  font-style: normal;
+#profile .col-12 {
+  font-size: 25px;
   font-weight: 500;
-  font-size: 16px;
 }
 
-.form-group #title {
-  height: 50px;
-  background-color: #f6f5f4;
-  border-color: #f6f5f4;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+#profile .col-2 {
+  font-size: 20px;
+  font-weight: 500;
 }
 
-.form-group #ingredients {
-  height: 100px;
-  background-color: #f6f5f4;
-  border-color: #f6f5f4;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+#profile img {
+  height: 250px;
+  width: 25%;
+  border-radius: 5%;
+  object-fit: cover;
+  margin-left: 20px;
 }
 
-.form-group #video {
-  height: 50px;
-  background-color: #f6f5f4;
-  border-color: #f6f5f4;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+.image-container {
+  display: inline-block;
 }
 
-.btn {
-  margin-top: 50px;
-  background-color: #efc81a;
-  border-color: #efc81a;
-  width: 30%;
+#profile .col-2:hover {
+  color: #efc81a;
+  transition: color 0.5s ease;
+  cursor: pointer;
 }
 
-.btn:hover {
-  background-color: rgba(239, 200, 26, 0.8);
-  border-color: rgba(239, 200, 26, 0.8);
-}
-
-/* Style the input button */
-#file-input {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
+.col-2.active {
+  color: #efc81a;
+  text-decoration: underline;
 }
 
 /* @ start footer css */
@@ -152,3 +120,5 @@ footer p {
   color: #707070;
 }
 /* @ end of footer css */
+
+
