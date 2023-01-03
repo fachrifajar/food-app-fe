@@ -1,0 +1,96 @@
+@media (max-width: 575px) {
+  #desktop-version {
+    display: none;
+  }
+}
+
+@media (max-width: 575px) {
+  body {
+    height: 150vh;
+    background-color: white;
+  }
+  #mobile-header .mobile-search-input {
+    margin: 20px 20px;
+  }
+
+  #mobile-header .form-control,
+  #mobile-header .input-group-text {
+    background-color: #efefef;
+  }
+
+  #mobile-header .mobile-header-title,
+  #mobile-header .mobile-popular-recipe {
+    font-weight: 700;
+    font-size: 25px;
+
+    color: #3f3a3a;
+  }
+
+  #mobile-header .mobile-popular-for-you img {
+    width: 8vh;
+    height: 8vh;
+    object-fit: cover;
+    position: relative;
+  }
+
+  #mobile-header .mobile-popular-for-you .img-pfy {
+    margin: 10px;
+  }
+
+  #mobile-header .mobile-popular-for-you-text {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+  }
+
+  #mobile-header .mobile-popular-recipe img {
+    width: 20%;
+    height: 20%;
+    object-fit: cover;
+    position: relative;
+  }
+
+  .popular-recipe-img p {
+    font-size: 15px;
+    margin-top: 20px;
+    margin-left: 10px;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f7f7f7;
+    height: 60px;
+  }
+
+  footer a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    height: 100%;
+    text-decoration: none;
+    color: #777;
+  }
+
+  footer a i {
+    font-size: 24px;
+  }
+
+  footer a:active,
+  footer a:focus {
+    background-color: #333;
+    color: #eec302;
+    border-radius: 50px;
+  }
+
+  footer a.active {
+    background-color: #333;
+    color: #fff;
+  }
+}

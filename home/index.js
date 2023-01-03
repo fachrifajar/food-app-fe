@@ -1,17 +1,17 @@
-// //  Redirect to Login Page from Home/index.html
-// const loginButton = document.getElementById("login-button");
-// loginButton.addEventListener("click", () => {
-//   window.location.replace("login.html");
-// });
+console.log(window.location);
+if (
+  navigator.userAgent.match(
+    /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+  )
+) {
+  window.location.replace = "http://127.0.0.1:5500/home/mobile-index.html";
+}
 
-// window.addEventListener("scroll", function () {
-//   const navbar = document.querySelector("#navbar-desktop");
-//   if (window.scrollY > 0) {
-//     navbar.classList.add("scrolled");
-//   } else {
-//     navbar.classList.remove("scrolled");
-//   }
-// });
+if (window.innerWidth <= 480) {
+  window.location.replace = "http://127.0.0.1:5500/home/mobile-index.html";
+}
+
+//////////////////////////
 
 // !Add animations to navbar (disappear while scroll & show while stop and scrolling to top)
 let previousScrollPosition = window.scrollY;
@@ -90,3 +90,5 @@ function updateContent() {
 setInterval(updateContent, 3000); // update the content every 3 seconds
 
 // ! End of animations to new-recipe (auto-change content)
+
+

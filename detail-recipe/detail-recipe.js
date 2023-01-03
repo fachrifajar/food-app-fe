@@ -43,3 +43,20 @@ sendButton.addEventListener("click", (event) => {
   textarea.value = "";
 });
 //! End of detail-recipe (add alert to comment input)
+
+// const ingredientsLink = document.querySelector("#ingredients .section-link");
+// const videoStepsLink = document.querySelector("#video-steps .section-link");
+// const ingredientsSection = document.querySelector("#ingredients");
+// const videoStepsSection = document.querySelector("#video-steps");
+
+// ingredientsLink.addEventListener("click", (event) => {
+//   event.preventDefault();
+//   ingredientsSection.classList.remove("hidden");
+//   videoStepsSection.classList.add("hidden");
+// });
+
+// videoStepsLink.addEventListener("click", (event) => {
+//   event.preventDefault();
+//   ingredientsSection.classList.add("hidden");
+//   videoStepsSection.classList.remove("hidden");
+// });
