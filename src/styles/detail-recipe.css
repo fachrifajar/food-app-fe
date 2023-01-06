@@ -1,4 +1,4 @@
-body {
+.detail-recipe-page {
   background-color: #fff5ec;
 }
 
@@ -46,26 +46,18 @@ body {
 }
 
 /* edit FULL header page */
-#header {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-}
 
 /*  @END OF HEADER */
 
 /* @ SELECTED RECIPE */
 /* recipe title page */
-#selected-recipe {
-  margin-top: 100px;
-}
 
 /* recipe title */
 #selected-recipe .title {
   font-weight: 500;
   font-size: 38px;
   color: #2e266f;
-  margin-top: 200px;
+  padding-top: 200px;
   margin-bottom: 50px;
 }
 

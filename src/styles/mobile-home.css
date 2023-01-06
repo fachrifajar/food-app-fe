@@ -1,12 +1,12 @@
 @media (max-width: 575px) {
-  #desktop-version {
+  #home-desktop-version {
     display: none;
   }
 }
 
 @media (max-width: 575px) {
   body {
-    height: 150vh;
+    height: 170vh;
     background-color: white;
   }
   #mobile-header .mobile-search-input {
@@ -54,6 +54,11 @@
     font-size: 15px;
     margin-top: 20px;
     margin-left: 10px;
+  }
+
+  .popular-recipe-img {
+    display: flex;
+    flex-direction: row;
   }
 
   footer {

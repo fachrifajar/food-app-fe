@@ -24,7 +24,7 @@ This project is built with the following technologies:
 1. Clone the repository: `git clone https://github.com/fachrifajar/food-app-fe.git`
 2. Install dependencies: `npm install`
 3. Start the development server: `npm start`
-4. Open [http://localhost:your-own-host](http://localhost:your-own-host) in your browser to view the app
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to view the app
 
 ## Demo
 

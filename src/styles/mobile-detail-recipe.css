@@ -13,7 +13,7 @@
   header {
     position: relative;
     height: 250px;
-    background-image: url("/images/detail-recipe/pancake.jpg");
+    background-image: url(/public/images/detail-recipe/pancake.jpg);
     background-size: cover;
     background-position: center;
   }
@@ -203,3 +203,4 @@
     color: #18172b;
   }
 }
+
