@@ -4,12 +4,7 @@ import Helmet from "react-helmet";
 function Maintenance() {
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}>
+      <div className="d-flex align-items-center justify-content-center">
         <Helmet>
           <title>MAINTENANCE</title>
         </Helmet>
@@ -19,7 +14,9 @@ function Maintenance() {
           width="60%"
         />
       </div>
-      <h1 className="text-center mt-3" style={{ fontWeight: "700", fontSize: '40px' }}>
+      <h1
+        className="text-center mt-3"
+        style={{ fontWeight: "700", fontSize: "40px" }}>
         Sorry, we're doing some work on this page
       </h1>
       <span>

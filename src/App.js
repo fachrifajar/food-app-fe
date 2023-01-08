@@ -11,7 +11,7 @@ import Maintenance from "./pages/maintenance";
 import ForgotPassword from "./pages/forgot-password";
 
 function App() {
-  const maintenance = ["/forgot-password", "/sign-up"];
+  const maintenance = ["/forgot-password"];
   const isMaintenance =
     process.env.REACT_APP_IS_MAINTENANCE === "true" &&
     maintenance.find((result) => result === document.location.pathname);
