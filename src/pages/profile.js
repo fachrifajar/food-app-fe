@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Helmet from "react-helmet";
 import "../styles/profile.css";
-
+import Navbar from "../components/navbar";
 
 function Profile() {
   // ! Change image container when desired content clicked
@@ -36,76 +36,14 @@ function Profile() {
     clickedElement.classList.add(activeClass);
   };
   // ! end of change image container when desired content clicked
-  React.useEffect(() => {
-    // Add animations to navbar (disappear while scroll & show while stop and scrolling to top)
-    let previousScrollPosition = window.scrollY;
 
-    window.addEventListener("scroll", function () {
-      const navbar = document.querySelector("#navbar-desktop");
-      const currentScrollPosition = window.scrollY;
-      if (currentScrollPosition > previousScrollPosition) {
-        // User is scrolling down
-        navbar.classList.add("hidden");
-      } else {
-        // User is scrolling up
-        navbar.classList.remove("hidden");
-      }
-      previousScrollPosition = currentScrollPosition;
-
-      if (currentScrollPosition === 0) {
-        // User has scrolled to the top of the page
-        navbar.style.backgroundColor = "transparent";
-        navbar.style.backdropFilter = "none";
-        navbar.style.boxShadow = "none";
-      } else {
-        // overridden css function
-        navbar.style.backgroundColor = "rgba(255,255,255,0.8)";
-        navbar.style.backdropFilter = "blur(5px)";
-      }
-
-      setTimeout(function () {
-        navbar.classList.remove("hidden");
-      }, 1500);
-    });
-    // End of animations to navbar (disappear while scroll & show while stop and scrolling to top)
-  }, []);
   return (
     <div className="profile">
       <Helmet>
         <title>Profile</title>
       </Helmet>
       {/* <!-- ! Navbar --> */}
-      <nav class="navbar navbar-expand-md fixed-top" id="navbar-desktop">
-        <div class="container">
-          <button
-            class="navbar-toggler"
-            data-bs-toggle="collapse"
-            data-bs-target="#nav"
-            aria-controls="nav"
-            aria-label="Expand Navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="nav">
-            <ul class="navbar-nav">
-              <li class="nav-item me-5">
-                <Link to="/" class="nav-link" aria-current="page">
-                  Home
-                </Link>
-              </li>
-              <li class="nav-item me-5">
-                <Link to="/add-recipe" class="nav-link">
-                  Add Recipe
-                </Link>
-              </li>
-              <li class="nav-item me-5">
-                <Link to="/profile" class="nav-link active">
-                  Profile
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       <section id="profile">
         <div className="container">
