@@ -1,7 +1,9 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const location = useLocation();
   React.useEffect(() => {
     // Add animations to navbar (disappear while scroll & show while stop and scrolling to top)
     let previousScrollPosition = window.scrollY;
@@ -50,17 +52,30 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="nav">
             <ul className="navbar-nav">
               <li className="nav-item me-5">
-                <Link to="/" className="nav-link active" aria-current="page">
+                <Link
+                  to="/"
+                  className={`nav-link ${
+                    location.pathname === "/" ? "active" : ""
+                  }`}
+                  aria-current="page">
                   Home
                 </Link>
               </li>
               <li className="nav-item me-5">
-                <Link to="/add-recipe" className="nav-link">
+                <Link
+                  to="/add-recipe"
+                  className={`nav-link ${
+                    location.pathname === "/add-recipe" ? "active" : ""
+                  }`}>
                   Add Recipe
                 </Link>
               </li>
               <li className="nav-item me-5">
-                <Link to="/profile" className="nav-link">
+                <Link
+                  to="/profile"
+                  className={`nav-link ${
+                    location.pathname === "/profile" ? "active" : ""
+                  }`}>
                   Profile
                 </Link>
               </li>
