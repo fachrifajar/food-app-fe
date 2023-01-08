@@ -306,7 +306,7 @@ footer p {
 }
 
 /* @ end of footer css */
-.icon-container {
+/* .icon-container {
   position: absolute;
   z-index: 2;
   bottom: 0;
@@ -314,7 +314,7 @@ footer p {
   display: flex;
   align-items: flex-start;
   padding: 0.5rem;
-}
+} */
 
 .icon-link {
   color: #efc81a;

@@ -116,14 +116,19 @@
   padding: 0.5rem;
 }
 
-.icon-link {
+.icon-container .icon-link {
   color: #efc81a;
+  background-color: black;
+  border-color: black;
+  border-radius: 10px;
   font-size: 1.5rem;
   margin: 0 0.5rem;
 }
 
-.icon-link:hover {
-  color: #2e266f;
+.icon-container .icon-link:hover {
+  color: #ffffff;
+  border-color: #efc81a;
+  background-color: #efc81a;
 }
 
 /* @ COMMENTS */

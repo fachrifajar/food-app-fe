@@ -4,6 +4,37 @@ import Helmet from "react-helmet";
 import "../styles/profile.css";
 
 function Profile() {
+  // ! Change image container when desired content clicked
+  const activeClass = "active";
+  const images = {
+    1: ["/images/home/pancake.jpg", "/images/home/new-recipe-1.jpg"],
+    2: [
+      "/images/home/banana-smoothie-pop.jpg",
+      "/images/home/caramel-white-cake.jpg",
+    ],
+    3: ["/images/home/bomb-chicken.jpg", "/images/home/chicken-kare.jpg"],
+  };
+
+  const changeImage = (n) => {
+    const imageContainers = document.querySelectorAll(".image-container");
+    imageContainers.forEach((container) => (container.innerHTML = ""));
+    images[n].forEach((imageUrl) => {
+      const image = document.createElement("img");
+      image.src = imageUrl;
+      image.classList.add("recipe-1");
+      imageContainers[0].appendChild(image);
+    });
+
+    const col2Elements = document.querySelectorAll(".col-2");
+    col2Elements.forEach((element) => {
+      element.classList.remove(activeClass);
+    });
+    const clickedElement = document.querySelector(
+      `.col-2[data-section="${n}"]`
+    );
+    clickedElement.classList.add(activeClass);
+  };
+  // ! end of change image container when desired content clicked
   React.useEffect(() => {
     // Add animations to navbar (disappear while scroll & show while stop and scrolling to top)
     let previousScrollPosition = window.scrollY;
@@ -36,40 +67,6 @@ function Profile() {
       }, 1500);
     });
     // End of animations to navbar (disappear while scroll & show while stop and scrolling to top)
-
-    // ! Change image container when desired content clicked
-    const activeClass = "active";
-    // let currentSection = null;
-
-    const changeImage = function (n) {
-      const images = {
-        1: ["/images/home/pancake.jpg", "/images/home/new-recipe-1.jpg"],
-        2: [
-          "/images/home/banana-smoothie-pop.jpg",
-          "/images/home/caramel-white-cake.jpg",
-        ],
-        3: ["/images/home/bomb-chicken.jpg", "/images/home/chicken-kare.jpg"],
-      };
-      // currentSection = n;
-      const imageContainers = document.querySelectorAll(".image-container");
-      imageContainers.forEach((container) => (container.innerHTML = ""));
-      images[n].forEach((imageUrl) => {
-        const image = document.createElement("img");
-        image.src = imageUrl;
-        image.classList.add("recipe-1");
-        imageContainers[0].appendChild(image);
-      });
-
-      const col2Elements = document.querySelectorAll(".col-2");
-      col2Elements.forEach((element) => {
-        element.classList.remove(activeClass);
-      });
-      const clickedElement = document.querySelector(
-        `.col-2[data-section="${n}"]`
-      );
-      clickedElement.classList.add(activeClass);
-    };
-    // ! end of change image container when desired content clicked
   }, []);
   return (
     <div className="profile">
@@ -122,19 +119,19 @@ function Profile() {
             </div>
             <div
               className="col-2 my-recipe"
-              onClick={() => `{changeImage}`(1)}
+              onClick={() => changeImage(1)}
               data-section="1">
               <p>My Recipe</p>
             </div>
             <div
               className="col-2 saved-recipe"
-              onClick={() => `{changeImage}`(2)}
+              onClick={() => changeImage(2)}
               data-section="2">
               <p>Saved Recipe</p>
             </div>
             <div
               className="col-2 liked-recipe"
-              onClick={() => `{changeImage}`(3)}
+              onClick={() => changeImage(3)}
               data-section="3">
               <p>Liked Recipe</p>
             </div>

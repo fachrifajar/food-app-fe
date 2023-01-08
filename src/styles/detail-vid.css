@@ -54,7 +54,7 @@
 }
 
 /* left line background */
-.line-background {
+#recipe-vid .line-background {
   height: 200vh;
   width: 50px;
   position: absolute;

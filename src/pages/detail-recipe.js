@@ -38,6 +38,16 @@ const DetailRecipe = () => {
     });
     // End of animations to navbar (disappear while scroll & show while stop and scrolling to top)
 
+    // add alert to button icons
+    const buttonIcons = document.querySelector(".icon-link");
+
+    const alertBtn = () => {
+      alert("Recipe added to Collections");
+    };
+
+    buttonIcons.addEventListener("click", alertBtn);
+    // End of add alert to button icons
+
     // detail-recipe (add alert to comment input)
     const sendButton = document.getElementById("send-button");
     const textarea = document.querySelector("textarea");
@@ -106,12 +116,12 @@ const DetailRecipe = () => {
                     alt="pancake"
                   />
                   <div className="icon-container">
-                    <Link to="#" className="icon-link">
-                      <i className="fas fa-heart"></i>
-                    </Link>
-                    <Link to="#" className="icon-link">
-                      <i className="fas fa-save"></i>
-                    </Link>
+                    <button className="btn btn-primary icon-link">
+                      <i className="fas fa-bookmark"></i>
+                    </button>
+                    <btn className="btn btn-primary icon-link">
+                      <i className="fas fa-thumbs-up"></i>
+                    </btn>
                   </div>
                 </div>
               </div>
