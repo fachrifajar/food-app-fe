@@ -7,8 +7,19 @@ import Profile from "./pages/profile";
 import AddRecipe from "./pages/add-recipe";
 import DetailRecipe from "./pages/detail-recipe";
 import DetailVid from "./pages/detail-vid";
+import Maintenance from "./pages/maintenance";
+import ForgotPassword from "./pages/forgot-password";
 
 function App() {
+  const maintenance = ["/forgot-password", "/sign-up"];
+  const isMaintenance =
+    process.env.REACT_APP_IS_MAINTENANCE === "true" &&
+    maintenance.find((result) => result === document.location.pathname);
+
+  if (isMaintenance) {
+    return <Maintenance />;
+  }
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -37,6 +48,10 @@ function App() {
     {
       path: "detail-vid",
       element: <DetailVid />,
+    },
+    {
+      path: "forgot-password",
+      element: <ForgotPassword />,
     },
   ]);
 

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Helmet from "react-helmet";
 import "../styles/profile.css";
 
+
 function Profile() {
   // ! Change image container when desired content clicked
   const activeClass = "active";

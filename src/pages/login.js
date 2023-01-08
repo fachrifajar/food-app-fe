@@ -15,7 +15,7 @@ const Login = () => {
           <div className="col-6 left-side">
             <div className="left-side-overlay"></div>
             <div className="logo">
-              <img src="/images/main-logo.png" width="100px" alt="main-logo"/>
+              <img src="/images/main-logo.png" width="100px" alt="main-logo" />
               <p className="text-white text-center mt-2">Mama Recipe.</p>
             </div>
           </div>
@@ -60,7 +60,7 @@ const Login = () => {
                   Log in
                 </Link>
               </div>
-              <Link className="forgot-password" to="/forgot">
+              <Link className="forgot-password" to="/forgot-password">
                 Forgot Password ?
               </Link>
 
