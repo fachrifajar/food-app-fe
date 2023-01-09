@@ -174,7 +174,7 @@ function Home() {
                   That’s right!
                 </p>
                 <p>
-                  <Link to="/detail-recipe">
+                  <Link to="/detail-recipe/salted-brown-butter-pancake">
                     <button
                       className="btn btn-primary btn-lg"
                       type="button"
