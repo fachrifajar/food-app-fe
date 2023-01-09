@@ -13,10 +13,8 @@ This is a web application for finding and sharing recipes. Users can search for 
 
 This project is built with the following technologies:
 
-- React
-- Redux
+- React (Create React App)
 - React Router
-- Axios
 - Bootstrap
 
 ## Getting Started
