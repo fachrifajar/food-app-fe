@@ -10,27 +10,27 @@ import RecipeCard from "../components/recipe-card";
 function Home() {
   const recipeCardContainers = [
     {
-      title: "Chicken Curry",
+      name: "Chicken Curry",
       src: "/images/home/chicken-kare.jpg",
     },
     {
-      title: "Bomb Chicken",
+      name: "Bomb Chicken",
       src: "/images/home/bomb-chicken.jpg",
     },
     {
-      title: "Banana Smoothie Pop",
+      name: "Banana Smoothie Pop",
       src: "/images/home/banana-smoothie-pop.jpg",
     },
     {
-      title: "Caramel White Cake",
+      name: "Caramel White Cake",
       src: "/images/home/caramel-white-cake.jpg",
     },
     {
-      title: "Grilled Salmon",
+      name: "Grilled Salmon",
       src: "/images/home/grilled-salmon.jpg",
     },
     {
-      title: "Special Biryani",
+      name: "Special Biryani",
       src: "/images/home/special-biryani.jpg",
     },
   ];
@@ -197,7 +197,11 @@ function Home() {
             <div className="row">
               {recipeCardContainers.map((item) => (
                 <div className="col-4">
-                  <RecipeCard src={item?.src} title={item?.title} />
+                  <RecipeCard
+                    src={item?.src}
+                    name={item?.name}
+                    url={item?.name?.toLocaleLowerCase()?.split(" ").join("-")}
+                  />
                 </div>
               ))}
             </div>
@@ -433,3 +437,37 @@ function Home() {
 }
 
 export default Home;
+
+{
+  /* <section id="popular-recipes">
+<div className="container">
+  <div className="item">
+    <img
+      src="/images/home/chicken-kare.jpg"
+      height="100%"
+      width="100%"
+      loading="lazy"
+      alt="title"
+    />
+  </div>{" "}
+  <div className="item">
+    <img
+      src="/images/home/chicken-kare.jpg"
+      height="100%"
+      width="100%"
+      loading="lazy"
+      alt="title"
+    />
+  </div>{" "}
+  <div className="item">
+    <img
+      src="/images/home/chicken-kare.jpg"
+      height="100%"
+      width="100%"
+      loading="lazy"
+      alt="title"
+    />
+  </div>
+</div>
+</section> */
+}

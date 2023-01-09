@@ -326,3 +326,25 @@ footer p {
 .icon-link:hover {
   color: #2e266f;
 }
+
+/* * {
+  box-sizing: border-box;
+}
+
+#home-desktop-version #popular-recipes .container {
+  display: flex;
+  overflow-x: scroll;
+  padding: 24px;  
+  width: 300px;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 24px;
+  border-radius: 8px;
+  gap: 12px;
+}
+
+#home-desktop-version #popular-recipes .container .item {
+  flex: 0 0 100%;
+  padding: 24px;
+  border-radius: 8px;
+  scroll-snap-align: start;
+} */

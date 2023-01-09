@@ -42,7 +42,7 @@ function App() {
       element: <AddRecipe />,
     },
     {
-      path: "detail-recipe",
+      path: "detail-recipe/:title",
       element: <DetailRecipe />,
     },
     {
