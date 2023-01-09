@@ -5,8 +5,35 @@ import "../styles/mobile-home.css";
 import Helmet from "react-helmet";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
+import RecipeCard from "../components/recipe-card";
 
 function Home() {
+  const recipeCardContainers = [
+    {
+      title: "Chicken Curry",
+      src: "/images/home/chicken-kare.jpg",
+    },
+    {
+      title: "Bomb Chicken",
+      src: "/images/home/bomb-chicken.jpg",
+    },
+    {
+      title: "Banana Smoothie Pop",
+      src: "/images/home/banana-smoothie-pop.jpg",
+    },
+    {
+      title: "Caramel White Cake",
+      src: "/images/home/caramel-white-cake.jpg",
+    },
+    {
+      title: "Grilled Salmon",
+      src: "/images/home/grilled-salmon.jpg",
+    },
+    {
+      title: "Special Biryani",
+      src: "/images/home/special-biryani.jpg",
+    },
+  ];
   React.useEffect(() => {
     // Add animations to new-recipe (auto-change content)
     const content = [
@@ -168,78 +195,11 @@ function Home() {
           </div>
           <div className="container">
             <div className="row">
-              <div className="col-4">
-                <div className="clickable-image mb-4">
-                  <img
-                    src="/images/home/chicken-kare.jpg"
-                    height="100%"
-                    width="100%"
-                    loading="lazy"
-                    alt="chicken kare"
-                  />
-                  <h2 className="image-title">Chicken Curry</h2>
+              {recipeCardContainers.map((item) => (
+                <div className="col-4">
+                  <RecipeCard src={item?.src} title={item?.title} />
                 </div>
-              </div>
-              <div className="col-4">
-                <div className="clickable-image mb-4">
-                  <img
-                    src="/images/home/bomb-chicken.jpg"
-                    height="100%"
-                    width="100%"
-                    loading="lazy"
-                    alt="bomb chicken"
-                  />
-                  <h2 className="image-title">Bomb Chicken</h2>
-                </div>
-              </div>
-              <div className="col-4">
-                <div className="clickable-image mb-4">
-                  <img
-                    src="/images/home/banana-smoothie-pop.jpg"
-                    height="100%"
-                    width="100%"
-                    loading="lazy"
-                    alt="banana smoothie pop"
-                  />
-                  <h2 className="image-title">Banana Smoothie Pop</h2>
-                </div>
-              </div>
-              <div className="col-4">
-                <div className="clickable-image mb-4">
-                  <img
-                    src="/images/home/caramel-white-cake.jpg"
-                    height="100%"
-                    width="100%"
-                    loading="lazy"
-                    alt="caramel white cake"
-                  />
-                  <h2 className="image-title">Caramel White Cake</h2>
-                </div>
-              </div>
-              <div className="col-4">
-                <div className="clickable-image mb-4">
-                  <img
-                    src="/images/home/grilled-salmon.jpg"
-                    height="100%"
-                    width="100%"
-                    loading="lazy"
-                    alt="grilled salmon"
-                  />
-                  <h2 className="image-title">Grilled Salmon</h2>
-                </div>
-              </div>
-              <div className="col-4">
-                <div className="clickable-image mb-4">
-                  <img
-                    src="/images/home/special-biryani.jpg"
-                    height="100%"
-                    width="100%"
-                    loading="lazy"
-                    alt="special biryani"
-                  />
-                  <h2 className="image-title">Special Biryani</h2>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>

@@ -269,6 +269,7 @@
   bottom: 0;
   margin: 20px;
   text-shadow: 3px 0px 5px rgba(0, 0, 0, 0.29);
+  color: #3f3a3a;
 
   max-width: 150px; /* set the desired max-width of the container */
   white-space: pre-wrap; /* allow the text to wrap and add space when it exceeds the max-width */
