@@ -258,9 +258,11 @@
   object-fit: cover;
 }
 
-#popular-recipe .clickable-image:hover {
+#popular-recipe .clickable-image img:hover {
   transform: scale(1.1);
-  transition: 0.5s;
+  transition: 0.7s;
+  border-radius: 50%;
+  opacity: 0.9;
 }
 
 #popular-recipe .image-title {

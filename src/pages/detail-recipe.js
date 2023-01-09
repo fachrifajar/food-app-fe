@@ -309,6 +309,54 @@ const DetailRecipe = () => {
                     <br />
                   </Link>
                 </h2>
+                <div id="comments">
+                  <div className="col-12 mt-5">
+                    <form className="text-center">
+                      <textarea
+                        className="input-form"
+                        placeholder="Comments :"
+                        rows="5"
+                        cols="100"></textarea>
+                    </form>
+                    <div className="text-center mt-3">
+                      <button
+                        id="send-button"
+                        type="button"
+                        className="btn btn-primary"
+                        data-bs-toggle="button">
+                        Send
+                      </button>
+                    </div>
+                    <h2 className="comment-user mt-5">Comment</h2>
+                  </div>
+
+                  <div className="row">
+                    <div className="col-1">
+                      <img
+                        src="/images/detail-recipe/dafault-pp.jpg"
+                        alt="default-pp"
+                        className="user-picture mt-4"
+                      />
+                      <img
+                        src="/images/detail-recipe/dafault-pp.jpg"
+                        alt="default-pp"
+                        className="user-picture mt-4"
+                      />
+                    </div>
+                    <div className="col-4">
+                      <p>
+                        <br />
+                        <b>Suparmoyo</b> <br />
+                        Superb tutorial, and the food looks awesome!
+                      </p>
+                      <p>
+                        <br />
+                        <b>Ruslan</b> <br />
+                        This tutorial is newbie friendly!. So clear
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -317,51 +365,7 @@ const DetailRecipe = () => {
         {/* <!-- ! COMMENTS --> */}
         <section id="comments">
           <div className="container">
-            <div className="row mt-5">
-              <div className="col-12 mt-5">
-                <form className="text-center">
-                  <textarea
-                    className="input-form"
-                    placeholder="Comments :"
-                    rows="5"
-                    cols="100"></textarea>
-                </form>
-                <div className="text-center mt-3">
-                  <button
-                    id="send-button"
-                    type="button"
-                    className="btn btn-primary"
-                    data-bs-toggle="button">
-                    Send
-                  </button>
-                </div>
-                <h2 className="comment-user mt-5">Comment</h2>
-              </div>
-              <div className="col-1">
-                <img
-                  src="/images/detail-recipe/dafault-pp.jpg"
-                  alt="default-pp"
-                  className="user-picture mt-4"
-                />
-                <img
-                  src="/images/detail-recipe/dafault-pp.jpg"
-                  alt="default-pp"
-                  className="user-picture mt-4"
-                />
-              </div>
-              <div className="col-4">
-                <p>
-                  <br />
-                  <b>Suparmoyo</b> <br />
-                  Superb tutorial, and the food looks awesome!
-                </p>
-                <p>
-                  <br />
-                  <b>Ruslan</b> <br />
-                  This tutorial is newbie friendly!. So clear
-                </p>
-              </div>
-            </div>
+            <div className="row mt-5"></div>
           </div>
         </section>
 
@@ -459,3 +463,56 @@ const DetailRecipe = () => {
 };
 
 export default DetailRecipe;
+
+{
+  /* <!-- ! COMMENTS --> */
+}
+//    <section id="comments">
+//    <div className="container">
+//      <div className="row mt-5">
+//        <div className="col-12 mt-5">
+//          <form className="text-center">
+//            <textarea
+//              className="input-form"
+//              placeholder="Comments :"
+//              rows="5"
+//              cols="100"></textarea>
+//          </form>
+//          <div className="text-center mt-3">
+//            <button
+//              id="send-button"
+//              type="button"
+//              className="btn btn-primary"
+//              data-bs-toggle="button">
+//              Send
+//            </button>
+//          </div>
+//          <h2 className="comment-user mt-5">Comment</h2>
+//        </div>
+//        <div className="col-1">
+//          <img
+//            src="/images/detail-recipe/dafault-pp.jpg"
+//            alt="default-pp"
+//            className="user-picture mt-4"
+//          />
+//          <img
+//            src="/images/detail-recipe/dafault-pp.jpg"
+//            alt="default-pp"
+//            className="user-picture mt-4"
+//          />
+//        </div>
+//        <div className="col-4">
+//          <p>
+//            <br />
+//            <b>Suparmoyo</b> <br />
+//            Superb tutorial, and the food looks awesome!
+//          </p>
+//          <p>
+//            <br />
+//            <b>Ruslan</b> <br />
+//            This tutorial is newbie friendly!. So clear
+//          </p>
+//        </div>
+//      </div>
+//    </div>
+//  </section>
