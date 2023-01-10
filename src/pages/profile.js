@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Helmet from "react-helmet";
 import "../styles/profile.css";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 
-function ImageContainer({ images }) {
-  return (
-    <div className="image-container">
-      {images.map((image, index) => (
-        <img key={index} src={image} alt="Recipe" />
-      ))}
-    </div>
-  );
-}
+// function ImageContainer({ images }) {
+//   return (
+//     <div className="image-container">
+//       {images.map((image, index) => (
+//         <img key={index} src={image} alt="Recipe" />
+//       ))}
+//     </div>
+//   );
+// }
 
 function Profile() {
   const images = {
@@ -48,26 +48,36 @@ function Profile() {
               <p className="mt-4">Karyo Subiatmono</p>
             </div>
             <div
-              className="col-2 my-recipe"
+              className={`col-2 ${
+                selectedTab === "myRecipe" ? "active" : ""
+              } my-recipe`}
               onClick={() => setSelectedTab("myRecipe")}
               data-section="1">
               <p>My Recipe</p>
             </div>
             <div
-              className="col-2 saved-recipe"
+              className={`col-2 ${
+                selectedTab === "savedRecipe" ? "active" : ""
+              } saved-recipe`}
               onClick={() => setSelectedTab("savedRecipe")}
               data-section="2">
               <p>Saved Recipe</p>
             </div>
             <div
-              className="col-2 liked-recipe"
+              className={`col-2 ${
+                selectedTab === "likedRecipe" ? "active" : ""
+              } liked-recipe`}
               onClick={() => setSelectedTab("likedRecipe")}
               data-section="3">
               <p>Liked Recipe</p>
             </div>
           </div>
           <div className="row mt-4">
-            <ImageContainer images={images[selectedTab]} />
+            <div className="image-container">
+              {images[selectedTab].map((image, index) => (
+                <img key={index} src={image} alt="Recipe" />
+              ))}
+            </div>
           </div>
         </div>
       </section>
