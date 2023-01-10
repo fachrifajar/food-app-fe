@@ -1,41 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Helmet from "react-helmet";
 import "../styles/profile.css";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 
+function ImageContainer({ images }) {
+  return (
+    <div className="image-container">
+      {images.map((image, index) => (
+        <img key={index} src={image} alt="Recipe" />
+      ))}
+    </div>
+  );
+}
+
 function Profile() {
-  // ! Change image container when desired content clicked
-  const activeClass = "active";
   const images = {
-    1: ["/images/home/pancake.jpg", "/images/home/new-recipe-1.jpg"],
-    2: [
+    myRecipe: ["/images/home/pancake.jpg", "/images/home/new-recipe-1.jpg"],
+    savedRecipe: [
       "/images/home/banana-smoothie-pop.jpg",
       "/images/home/caramel-white-cake.jpg",
     ],
-    3: ["/images/home/bomb-chicken.jpg", "/images/home/chicken-kare.jpg"],
+    likedRecipe: [
+      "/images/home/bomb-chicken.jpg",
+      "/images/home/chicken-kare.jpg",
+    ],
   };
-
-  const changeImage = (n) => {
-    const imageContainers = document.querySelectorAll(".image-container");
-    imageContainers.forEach((container) => (container.innerHTML = ""));
-    images[n].forEach((imageUrl) => {
-      const image = document.createElement("img");
-      image.src = imageUrl;
-      image.classList.add("recipe-1");
-      imageContainers[0].appendChild(image);
-    });
-
-    const col2Elements = document.querySelectorAll(".col-2");
-    col2Elements.forEach((element) => {
-      element.classList.remove(activeClass);
-    });
-    const clickedElement = document.querySelector(
-      `.col-2[data-section="${n}"]`
-    );
-    clickedElement.classList.add(activeClass);
-  };
-  // ! end of change image container when desired content clicked
+  const [selectedTab, setSelectedTab] = useState("myRecipe");
 
   return (
     <div className="profile">
@@ -58,25 +49,25 @@ function Profile() {
             </div>
             <div
               className="col-2 my-recipe"
-              onClick={() => changeImage(1)}
+              onClick={() => setSelectedTab("myRecipe")}
               data-section="1">
               <p>My Recipe</p>
             </div>
             <div
               className="col-2 saved-recipe"
-              onClick={() => changeImage(2)}
+              onClick={() => setSelectedTab("savedRecipe")}
               data-section="2">
               <p>Saved Recipe</p>
             </div>
             <div
               className="col-2 liked-recipe"
-              onClick={() => changeImage(3)}
+              onClick={() => setSelectedTab("likedRecipe")}
               data-section="3">
               <p>Liked Recipe</p>
             </div>
           </div>
           <div className="row mt-4">
-            <div className="image-container"></div>
+            <ImageContainer images={images[selectedTab]} />
           </div>
         </div>
       </section>

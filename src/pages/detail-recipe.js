@@ -433,7 +433,7 @@ const DetailRecipe = () => {
           </div>
           <div id="video-steps" className="section">
             <div className="video-container">
-              <iframe
+              <iframe 
                 title="a video about cooking"
                 src="https://www.youtube.com/embed/xTgU7XtVcC8?controls=1"
                 frameborder="0"
