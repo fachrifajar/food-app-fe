@@ -6,34 +6,35 @@ import Helmet from "react-helmet";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import RecipeCard from "../components/recipe-card";
+import Spinner from "../components/molecules/spinner";
 
 function Home() {
-  const recipeCardContainers = [
-    {
-      name: "Chicken Curry",
-      src: "/images/home/chicken-kare.jpg",
-    },
-    {
-      name: "Bomb Chicken",
-      src: "/images/home/bomb-chicken.jpg",
-    },
-    {
-      name: "Banana Smoothie Pop",
-      src: "/images/home/banana-smoothie-pop.jpg",
-    },
-    {
-      name: "Caramel White Cake",
-      src: "/images/home/caramel-white-cake.jpg",
-    },
-    {
-      name: "Grilled Salmon",
-      src: "/images/home/grilled-salmon.jpg",
-    },
-    {
-      name: "Special Biryani",
-      src: "/images/home/special-biryani.jpg",
-    },
-  ];
+  // const recipeCardContainers = [
+  //   {
+  //     name: "Chicken Curry",
+  //     src: "/images/home/chicken-kare.jpg",
+  //   },
+  //   {
+  //     name: "Bomb Chicken",
+  //     src: "/images/home/bomb-chicken.jpg",
+  //   },
+  //   {
+  //     name: "Banana Smoothie Pop",
+  //     src: "/images/home/banana-smoothie-pop.jpg",
+  //   },
+  //   {
+  //     name: "Caramel White Cake",
+  //     src: "/images/home/caramel-white-cake.jpg",
+  //   },
+  //   {
+  //     name: "Grilled Salmon",
+  //     src: "/images/home/grilled-salmon.jpg",
+  //   },
+  //   {
+  //     name: "Special Biryani",
+  //     src: "/images/home/special-biryani.jpg",
+  //   },
+  // ];
   React.useEffect(() => {
     // Add animations to new-recipe (auto-change content)
     const content = [
@@ -73,13 +74,47 @@ function Home() {
       document.getElementById("new-recipe-button-id").innerHTML =
         content[currentContentIndex].buttonText;
 
-      // increment the index for the next update
       currentContentIndex = (currentContentIndex + 1) % content.length;
     }
 
-    setInterval(updateContent, 3000); // update the content every 3 seconds
+    setInterval(updateContent, 3000);
 
     // ! End of animations to new-recipe (auto-change content)
+  }, []);
+
+  const [recipeCardContainers, SetRecipeCardContainers] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+      SetRecipeCardContainers([
+        {
+          name: "Chicken Curry",
+          src: "/images/home/chicken-kare.jpg",
+        },
+        {
+          name: "Bomb Chicken",
+          src: "/images/home/bomb-chicken.jpg",
+        },
+        {
+          name: "Banana Smoothie Pop",
+          src: "/images/home/banana-smoothie-pop.jpg",
+        },
+        {
+          name: "Caramel White Cake",
+          src: "/images/home/caramel-white-cake.jpg",
+        },
+        {
+          name: "Grilled Salmon",
+          src: "/images/home/grilled-salmon.jpg",
+        },
+        {
+          name: "Special Biryani",
+          src: "/images/home/special-biryani.jpg",
+        },
+      ]);
+    }, 3000);
   }, []);
 
   return (
@@ -193,6 +228,11 @@ function Home() {
           <div className="container">
             <div className="title">Popular Recipe</div>
           </div>
+          {isLoading ? <Spinner /> : ""}
+          {recipeCardContainers.length === 0 && !isLoading ? (
+            <h2 className="text-center">Recipe not found</h2>
+          ) : null}
+
           <div className="container">
             <div className="row">
               {recipeCardContainers.map((item) => (
@@ -437,37 +477,3 @@ function Home() {
 }
 
 export default Home;
-
-{
-  /* <section id="popular-recipes">
-<div className="container">
-  <div className="item">
-    <img
-      src="/images/home/chicken-kare.jpg"
-      height="100%"
-      width="100%"
-      loading="lazy"
-      alt="title"
-    />
-  </div>{" "}
-  <div className="item">
-    <img
-      src="/images/home/chicken-kare.jpg"
-      height="100%"
-      width="100%"
-      loading="lazy"
-      alt="title"
-    />
-  </div>{" "}
-  <div className="item">
-    <img
-      src="/images/home/chicken-kare.jpg"
-      height="100%"
-      width="100%"
-      loading="lazy"
-      alt="title"
-    />
-  </div>
-</div>
-</section> */
-}
