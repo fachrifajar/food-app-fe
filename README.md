@@ -26,7 +26,7 @@ This project is built with the following technologies:
 
 ## Demo
 
-You can see a live demo of the app at [my-foodrecipe.netlify.app](https://my-foodrecipe.netlify.app/).
+You can see a live demo of the app at [my-foodrecipe.netlify.app](food-app-fe.vercel.app/).
 
 ## Contributions
 
