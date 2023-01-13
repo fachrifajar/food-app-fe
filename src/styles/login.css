@@ -1,4 +1,4 @@
-.left-side {
+.login-page .left-side {
   background-image: url(/public/images/main-background.jpg);
   background-size: cover;
   background-position: center;
@@ -13,7 +13,7 @@
   align-items: center;
 }
 
-.left-side-overlay {
+.login-page .left-side-overlay {
   background-color: #efc81a;
   height: 100%;
   width: 50%;
@@ -23,18 +23,18 @@
   opacity: 0.7;
 }
 
-.logo {
+.login-page .logo {
   z-index: 1;
 }
 
-.right-side {
+.login-page .right-side {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.right-side h1 {
+.login-page .right-side h1 {
   font-style: normal;
   font-weight: 700;
   font-size: 30px;
@@ -43,7 +43,7 @@
   color: #efc81a;
 }
 
-.right-side p {
+.login-page .right-side p {
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -52,7 +52,7 @@
   color: #8692a6;
 }
 
-.right-side,
+.login-page .right-side,
 .form-group,
 .form-check {
   font-style: normal;
@@ -62,12 +62,12 @@
   color: #696f79;
 }
 
-.right-side input[type="email"]::placeholder,
+.login-page .right-side input[type="email"]::placeholder,
 input[type="password"]::placeholder {
   filter: brightness(150%);
 }
 
-.right-side input[type="email"]:hover,
+.login-page .right-side input[type="email"]:hover,
 input[type="password"]:hover {
   background: #ffffff;
   border: 1px solid #efc81a;
@@ -75,7 +75,7 @@ input[type="password"]:hover {
   border-radius: 6px;
 }
 
-.right-side input[type="email"],
+.login-page .right-side input[type="email"],
 input[type="password"] {
   background: #ffffff;
   border: 1px solid #8692a6;
@@ -86,18 +86,18 @@ input[type="checkbox"]:checked {
   background-color: #efc81a;
 }
 
-.right-side .btn {
+.login-page .right-side .btn {
   background: #efc81a;
   border-color: #efc81a;
   width: 400px;
 }
 
-.right-side .btn:hover {
+.login-page .right-side .btn:hover {
   background-color: rgba(239, 200, 26, 0.8);
   border-color: rgba(239, 200, 26, 0.8);
 }
 
-.right-side .forgot-password {
+.login-page .right-side .forgot-password {
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -110,7 +110,7 @@ input[type="checkbox"]:checked {
   margin-bottom: 20px;
 }
 
-.right-side .do-not-have-an-account {
+.login-page .right-side .do-not-have-an-account {
   font-style: normal;
   font-weight: 500;
   font-size: 13px;
@@ -118,7 +118,7 @@ input[type="checkbox"]:checked {
   color: #999999;
 }
 
-.right-side .sign-up {
+.login-page .right-side .sign-up {
   color: #efc81a;
   text-decoration: none;
 }

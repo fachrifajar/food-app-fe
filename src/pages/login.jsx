@@ -2,8 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Helmet from "react-helmet";
 import "../styles/login.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [isError, setIsError] = React.useState(false);
+  const [errMsg, setErrMsg] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
+
   return (
     <div className="login-page">
       <Helmet>
@@ -26,6 +35,13 @@ const Login = () => {
               <div className="mb-3 form-group">
                 <h1>Welcome</h1>
                 <p>Log in into your existing account</p>
+
+                {isError ? (
+                  <div class="alert alert-danger" role="alert">
+                    {errMsg}
+                  </div>
+                ) : null}
+
                 <label for="email">E-mail</label>
                 <input
                   type="email"
@@ -33,6 +49,7 @@ const Login = () => {
                   id="email"
                   aria-describedby="emailHelp"
                   placeholder="Enter email"
+                  onChange={(event) => setEmail(event.target.value)}
                 />
               </div>
               {/* <!--@ Input Password --> */}
@@ -42,7 +59,9 @@ const Login = () => {
                   type="password"
                   className="form-control"
                   id="password"
+                  autocomplete="current-password"
                   placeholder="Enter password"
+                  onChange={(event) => setPassword(event.target.value)}
                 />
               </div>
               <div className="mb-3 form-check">
@@ -56,9 +75,55 @@ const Login = () => {
                 </label>
               </div>
               <div className="d-grid">
-                <Link to="/" className="btn btn-primary">
-                  Log in
-                </Link>
+                <button
+                  type="button"
+                  className={`btn btn-primary ${
+                    isLoading ? "btn-loading" : ""
+                  }`}
+                  disabled={isLoading}
+                  onClick={() => {
+                    if (!document.getElementById("terms").checked) {
+                      setIsError(true);
+                      setErrMsg(
+                        "Please agree to the terms and conditions to continue."
+                      );
+                      return;
+                    }
+                    setIsLoading(true);
+                    axios
+                      .post(`${process.env.REACT_APP_URL_BACKEND}/auth/login`, {
+                        email,
+                        password,
+                      })
+                      .then((res) => {
+                        localStorage.setItem("isLogin", true);
+                        localStorage.setItem(
+                          "token",
+                          res?.data?.data?.accessToken ?? ""
+                        );
+                        navigate("/"); //redirect to home page
+                      })
+                      .catch((err) => {
+                        setIsError(true);
+                        setErrMsg(
+                          err?.response?.data?.message?.message ??
+                            err?.response?.data?.message?.email?.message ??
+                            err?.response?.data?.message?.password?.message ??
+                            "Internal server error, please try again later"
+                        );
+                      })
+                      .finally(() => setIsLoading(false));
+                  }}>
+                  {isLoading ? (
+                    <span
+                      class="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"></span>
+                  ) : (
+                    ""
+                  )}
+                  {isLoading ? "Loading..." : "Log in"}
+                </button>
               </div>
               <Link className="forgot-password" to="/forgot-password">
                 Forgot Password ?

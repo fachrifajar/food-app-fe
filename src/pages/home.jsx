@@ -35,52 +35,52 @@ function Home() {
   //     src: "/images/home/special-biryani.jpg",
   //   },
   // ];
-  React.useEffect(() => {
-    // Add animations to new-recipe (auto-change content)
-    const content = [
-      {
-        image: "/images/home/new-recipe-1.jpg",
-        title: "Healthy Juicy Chicken Burger (Quick & Easy)",
-        description:
-          "Quick + Easy Juicy Chicken Burger- Healthy Chicken Burger? That’s right!",
-        buttonText: "Learn More",
-      },
-      {
-        image: "/images/home/pancake.jpg",
-        title: "Salted Brown Butter Pancake",
-        description:
-          "Delicious, fluffy salted brown butter pancakes with hints of warm, caramel-like flavor in every bite.",
-        buttonText: "Learn More",
-      },
-      // add more objects here for additional content
-    ];
+  // React.useEffect(() => {
+  //   // Add animations to new-recipe (auto-change content)
+  //   const content = [
+  //     {
+  //       image: "/images/home/new-recipe-1.jpg",
+  //       title: "Healthy Juicy Chicken Burger (Quick & Easy)",
+  //       description:
+  //         "Quick + Easy Juicy Chicken Burger- Healthy Chicken Burger? That’s right!",
+  //       buttonText: "Learn More",
+  //     },
+  //     {
+  //       image: "/images/home/pancake.jpg",
+  //       title: "Salted Brown Butter Pancake",
+  //       description:
+  //         "Delicious, fluffy salted brown butter pancakes with hints of warm, caramel-like flavor in every bite.",
+  //       buttonText: "Learn More",
+  //     },
+  //     // add more objects here for additional content
+  //   ];
 
-    let currentContentIndex = 0;
+  //   let currentContentIndex = 0;
 
-    function updateContent() {
-      // update the main image
-      document.getElementById("new-recipe-image-id").src =
-        content[currentContentIndex].image;
+  //   function updateContent() {
+  //     // update the main image
+  //     document.getElementById("new-recipe-image-id").src =
+  //       content[currentContentIndex].image;
 
-      // update the title
-      document.getElementById("new-recipe-title-id").innerHTML =
-        content[currentContentIndex].title;
+  //     // update the title
+  //     document.getElementById("new-recipe-title-id").innerHTML =
+  //       content[currentContentIndex].title;
 
-      // update the description
-      document.getElementById("new-recipe-description-id").innerHTML =
-        content[currentContentIndex].description;
+  //     // update the description
+  //     document.getElementById("new-recipe-description-id").innerHTML =
+  //       content[currentContentIndex].description;
 
-      // update the button text
-      document.getElementById("new-recipe-button-id").innerHTML =
-        content[currentContentIndex].buttonText;
+  //     // update the button text
+  //     document.getElementById("new-recipe-button-id").innerHTML =
+  //       content[currentContentIndex].buttonText;
 
-      currentContentIndex = (currentContentIndex + 1) % content.length;
-    }
+  //     currentContentIndex = (currentContentIndex + 1) % content.length;
+  //   }
 
-    setInterval(updateContent, 3000);
+  //   setInterval(updateContent, 3000);
 
-    // ! End of animations to new-recipe (auto-change content)
-  }, []);
+  //   // ! End of animations to new-recipe (auto-change content)
+  // }, []);
 
   const [recipeCardContainers, SetRecipeCardContainers] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
