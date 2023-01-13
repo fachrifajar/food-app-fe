@@ -3,19 +3,21 @@ import Helmet from "react-helmet";
 import "../styles/add-recipe.css";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
+import { useNavigate } from "react-router-dom";
 
 function AddRecipe() {
+  const navigate = useNavigate();
+
   useEffect(() => {
-    document
-      .getElementById("title")
-      .addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-          event.preventDefault();
-        }
-      });
+    const isLogin = localStorage.getItem("isLogin");
+    const token = localStorage.getItem("token");
+
+    if ((isLogin && token) === null) {
+      navigate("/"); //auto navigate to homepage (restricted to auth user)
+    }
 
     document
-      .getElementById("ingredients")
+      .getElementById("title")
       .addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
           event.preventDefault();

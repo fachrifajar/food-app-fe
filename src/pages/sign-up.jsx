@@ -2,8 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Helmet from "react-helmet";
 import "../styles/sign-up.css";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  
+  React.useEffect(() => {
+    const isLogin = localStorage.getItem("isLogin");
+    const token = localStorage.getItem("token");
+
+    if (isLogin && token) {
+      navigate("/"); //auto navigate to homepage (restricted to auth user)
+    }
+  }, [navigate]);
+
   return (
     <div className="sign-up">
       <Helmet>

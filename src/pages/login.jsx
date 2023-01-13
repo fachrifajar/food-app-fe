@@ -13,6 +13,15 @@ const Login = () => {
   const [errMsg, setErrMsg] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
 
+  React.useEffect(() => {
+    const isLogin = localStorage.getItem("isLogin");
+    const token = localStorage.getItem("token");
+
+    if (isLogin && token) {
+      navigate("/"); //auto navigate to homepage (restricted to auth user)
+    }
+  }, [navigate]);
+
   return (
     <div className="login-page">
       <Helmet>

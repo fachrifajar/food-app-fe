@@ -3,6 +3,11 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const isLogin = localStorage.getItem("isLogin");
+  const token = localStorage.getItem("token");
+  const isAuth = (isLogin && token) !== null;
+  console.log(isAuth);
+
   const location = useLocation();
   React.useEffect(() => {
     // Add animations to navbar (disappear while scroll & show while stop and scrolling to top)
@@ -61,24 +66,30 @@ const Navbar = () => {
                   Home
                 </Link>
               </li>
-              <li className="nav-item me-5">
-                <Link
-                  to="/add-recipe"
-                  className={`nav-link ${
-                    location.pathname === "/add-recipe" ? "active" : ""
-                  }`}>
-                  Add Recipe
-                </Link>
-              </li>
-              <li className="nav-item me-5">
-                <Link
-                  to="/profile"
-                  className={`nav-link ${
-                    location.pathname === "/profile" ? "active" : ""
-                  }`}>
-                  Profile
-                </Link>
-              </li>
+
+              {isAuth ? (
+                <li className="nav-item me-5">
+                  <Link
+                    to="/add-recipe"
+                    className={`nav-link ${
+                      location.pathname === "/add-recipe" ? "active" : ""
+                    }`}>
+                    Add Recipe
+                  </Link>
+                </li>
+              ) : null}
+
+              {isAuth ? (
+                <li className="nav-item me-5">
+                  <Link
+                    to="/profile"
+                    className={`nav-link ${
+                      location.pathname === "/profile" ? "active" : ""
+                    }`}>
+                    Profile
+                  </Link>
+                </li>
+              ) : null}
             </ul>
           </div>
           <div id="login-button">
