@@ -11,6 +11,7 @@ import Maintenance from "./pages/maintenance";
 import ForgotPassword from "./pages/forgot-password";
 
 
+
 function App() {
   const maintenance = ["/forgot-password"];
   const isMaintenance = process.env.REACT_APP_IS_MAINTENANCE === "true" && maintenance.some((result) => window.location.pathname.startsWith(result));

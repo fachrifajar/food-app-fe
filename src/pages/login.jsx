@@ -17,7 +17,7 @@ const Login = () => {
     const isLogin = localStorage.getItem("isLogin");
     const token = localStorage.getItem("token");
 
-    if (isLogin && token) {
+    if ((isLogin && token) !== null) {
       navigate("/"); //auto navigate to homepage (restricted to auth user)
     }
   }, [navigate]);
@@ -110,7 +110,16 @@ const Login = () => {
                           "token",
                           res?.data?.data?.accessToken ?? ""
                         );
+                        localStorage.setItem(
+                          "profPict",
+                          res?.data?.data?.profilePicture ?? ""
+                        );
+                        localStorage.setItem(
+                          "username",
+                          res?.data?.data?.username ?? ""
+                        );
                         navigate("/"); //redirect to home page
+                        console.log(res);
                       })
                       .catch((err) => {
                         setIsError(true);

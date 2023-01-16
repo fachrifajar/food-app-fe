@@ -15,6 +15,10 @@ import Footer from "../components/footer";
 // }
 
 function Profile() {
+  const username = localStorage.getItem("username");
+  const profPict = localStorage.getItem("profPict");
+  console.log(username);
+
   const images = {
     myRecipe: ["/images/home/pancake.jpg", "/images/home/new-recipe-1.jpg"],
     savedRecipe: [
@@ -41,11 +45,15 @@ function Profile() {
           <div className="row clearfix">
             <div className="col-12 text-center mb-5">
               <img
-                src="/images/profile/karyo.jpg"
+                src={
+                  profPict.includes("https")
+                    ? profPict
+                    : `https://res.cloudinary.com/daouvimjz/image/upload/${profPict}`
+                }
                 alt="userPhoto"
                 className="user-photo"
               />
-              <p className="mt-4">Karyo Subiatmono</p>
+              <p className="mt-4">{username}</p>
             </div>
             <div
               className={`col-2 ${

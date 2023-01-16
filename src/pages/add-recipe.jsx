@@ -57,7 +57,8 @@ function AddRecipe() {
           alert("Recipe added successfully");
         }
       });
-  }, []);
+  }, [navigate]); //delete navigate if error happens
+
   return (
     <div className="add-recipe">
       <Helmet>

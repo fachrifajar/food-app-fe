@@ -1,12 +1,16 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Modal, Button } from "react-bootstrap";
+import "../styles/navbar.css";
 
 const Navbar = () => {
   const isLogin = localStorage.getItem("isLogin");
   const token = localStorage.getItem("token");
   const isAuth = (isLogin && token) !== null;
   console.log(isAuth);
+
+  const profPict = localStorage.getItem("profPict");
 
   const location = useLocation();
   React.useEffect(() => {
@@ -42,6 +46,15 @@ const Navbar = () => {
     });
     // End of animations to navbar (disappear while scroll & show while stop and scrolling to top)
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLogin");
+    localStorage.removeItem("token");
+    localStorage.removeItem("profPict");
+  };
+
+  const [showModal, setShowModal] = React.useState(false);
+
   return (
     <div>
       <nav className="navbar navbar-expand-md fixed-top" id="navbar-desktop">
@@ -67,40 +80,117 @@ const Navbar = () => {
                 </Link>
               </li>
 
-              {isAuth ? (
-                <li className="nav-item me-5">
-                  <Link
-                    to="/add-recipe"
-                    className={`nav-link ${
-                      location.pathname === "/add-recipe" ? "active" : ""
-                    }`}>
-                    Add Recipe
-                  </Link>
-                </li>
-              ) : null}
+              <li className="nav-item me-5">
+                <Link
+                  to="/add-recipe"
+                  className={`nav-link ${
+                    location.pathname === "/add-recipe" ? "active" : ""
+                  }`}
+                  onClick={(e) => {
+                    if (!isAuth) {
+                      e.preventDefault();
+                      setShowModal(true);
+                    }
+                  }}>
+                  Add Recipe
+                </Link>
+              </li>
 
-              {isAuth ? (
-                <li className="nav-item me-5">
-                  <Link
-                    to="/profile"
-                    className={`nav-link ${
-                      location.pathname === "/profile" ? "active" : ""
-                    }`}>
-                    Profile
-                  </Link>
-                </li>
-              ) : null}
+              <li className="nav-item me-5">
+                <Link
+                  to="/profile"
+                  className={`nav-link ${
+                    location.pathname === "/profile" ? "active" : ""
+                  }`}
+                  onClick={(e) => {
+                    if (!isAuth) {
+                      e.preventDefault();
+                      setShowModal(true);
+                    }
+                  }}>
+                  Profile
+                </Link>
+              </li>
             </ul>
           </div>
-          <div id="login-button">
-            <Link to="/login">
-              <button type="button" className="btn btn-outline-light">
-                Log In
-              </button>
-            </Link>
-          </div>
+
+          {!isAuth ? (
+            <div id="login-button">
+              <Link to="/login">
+                <button type="button" className="btn btn-outline-light">
+                  Log In
+                </button>
+              </Link>
+            </div>
+          ) : (
+            <div id="logout-button">
+              <Link to="/">
+                <button
+                  type="button"
+                  className="btn btn-outline-light"
+                  onClick={handleLogout}>
+                  Log Out
+                </button>
+              </Link>
+            </div>
+          )}
+
+          {isAuth ? (
+            profPict.includes("https") ? (
+              <div className="navbar-profile-picture">
+                <img src={profPict} alt="default user pp" />
+              </div>
+            ) : (
+              <div className="navbar-profile-picture">
+                <img
+                  src={`https://res.cloudinary.com/daouvimjz/image/upload/${profPict}`}
+                  alt="user pp"
+                />
+              </div>
+            )
+          ) : null}
+
+          {/* {isAuth !== null ? (
+            profPict !== null ? (
+              <div className="navbar-profile-picture">
+                <img
+                  src={`https://res.cloudinary.com/daouvimjz/image/upload/${profPict}`}
+                  alt="user pp"
+                />
+              </div>
+            ) : (
+              <div className="navbar-profile-picture">
+                <img
+                  src={`https://res.cloudinary.com/daouvimjz/image/upload/v1671522875/Instagram_default_profile_kynrq6.jpg`}
+                  alt="default user pp"
+                />
+              </div>
+            )
+          ) : (
+            null()
+          )} */}
         </div>
       </nav>
+      <div className="navbar-modal">
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Please log in first</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>You must log in first to access this feature.</p>
+          </Modal.Body>
+          <Modal.Footer>
+            <Link to="/login">
+              <Button variant="primary" className="custom-button">
+                Log in
+              </Button>
+            </Link>
+            <Button variant="secondary" onClick={() => setShowModal(false)}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
     </div>
   );
 };
