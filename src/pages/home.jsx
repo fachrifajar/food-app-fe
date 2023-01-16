@@ -7,34 +7,9 @@ import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import RecipeCard from "../components/recipe-card";
 import Spinner from "../components/molecules/spinner";
+import axios from "axios";
 
 function Home() {
-  // const recipeCardContainers = [
-  //   {
-  //     name: "Chicken Curry",
-  //     src: "/images/home/chicken-kare.jpg",
-  //   },
-  //   {
-  //     name: "Bomb Chicken",
-  //     src: "/images/home/bomb-chicken.jpg",
-  //   },
-  //   {
-  //     name: "Banana Smoothie Pop",
-  //     src: "/images/home/banana-smoothie-pop.jpg",
-  //   },
-  //   {
-  //     name: "Caramel White Cake",
-  //     src: "/images/home/caramel-white-cake.jpg",
-  //   },
-  //   {
-  //     name: "Grilled Salmon",
-  //     src: "/images/home/grilled-salmon.jpg",
-  //   },
-  //   {
-  //     name: "Special Biryani",
-  //     src: "/images/home/special-biryani.jpg",
-  //   },
-  // ];
   // React.useEffect(() => {
   //   // Add animations to new-recipe (auto-change content)
   //   const content = [
@@ -84,38 +59,38 @@ function Home() {
 
   const [recipeCardContainers, SetRecipeCardContainers] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [totalPage, setTotalPage] = React.useState(1);
 
   React.useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-      SetRecipeCardContainers([
-        {
-          name: "Chicken Curry",
-          src: "/images/home/chicken-kare.jpg",
-        },
-        {
-          name: "Bomb Chicken",
-          src: "/images/home/bomb-chicken.jpg",
-        },
-        {
-          name: "Banana Smoothie Pop",
-          src: "/images/home/banana-smoothie-pop.jpg",
-        },
-        {
-          name: "Caramel White Cake",
-          src: "/images/home/caramel-white-cake.jpg",
-        },
-        {
-          name: "Grilled Salmon",
-          src: "/images/home/grilled-salmon.jpg",
-        },
-        {
-          name: "Special Biryani",
-          src: "/images/home/special-biryani.jpg",
-        },
-      ]);
-    }, 3000);
+    axios
+      .get(
+        `${process.env.REACT_APP_URL_BACKEND}/users/recipes/search/?page=1&limit=6&sort=DESC`
+      )
+      .then(({ data }) => {
+        console.log(parseInt(data?.total));
+        SetRecipeCardContainers(data?.data);
+        setTotalPage(parseInt(Math.ceil(data?.total / 6)));
+      })
+      .catch((err) => SetRecipeCardContainers([]))
+      .finally(() => setIsLoading(false));
   }, []);
+
+  const fetchPagination = (pageParam) => {
+    setIsLoading(true);
+    SetRecipeCardContainers([]);
+    axios
+      .get(
+        `${process.env.REACT_APP_URL_BACKEND}/users/recipes/search/?page=${pageParam}&limit=6&sort=DESC`
+      )
+      .then(({ data }) => {
+        SetRecipeCardContainers(data?.data);
+        setTotalPage(parseInt(Math.ceil(data?.total / 6)));
+        setCurrentPage(pageParam);
+      })
+      .catch((err) => SetRecipeCardContainers([]))
+      .finally(() => setIsLoading(false));
+  };
 
   return (
     <div>
@@ -235,17 +210,67 @@ function Home() {
 
           <div className="container">
             <div className="row">
-              {recipeCardContainers.map((item) => (
-                <div className="col-4">
-                  <RecipeCard
-                    src={item?.src}
-                    name={item?.name}
-                    url={item?.name?.toLocaleLowerCase()?.split(" ").join("-")}
-                  />
-                </div>
-              ))}
+              {!isLoading &&
+                recipeCardContainers.map((item, key) => (
+                  <div className="col-4" key={key}>
+                    <RecipeCard
+                      src={
+                        "https://res.cloudinary.com/daouvimjz/image/upload/" +
+                        item?.recipe_photos[0]
+                      }
+                      name={item?.title}
+                      url={item?.slug}
+                    />
+                  </div>
+                ))}
             </div>
           </div>
+          {isLoading ? null : (
+            <div className="container d-flex align-items-center justify-content-center">
+              <nav aria-label="Page navigation example">
+                <ul className="pagination">
+                  <li className="page-item">
+                    <btn
+                      class={`page-link ${currentPage === 1 ? "disabled" : ""}`}
+                      onClick={() => {
+                        if (currentPage > 1) fetchPagination(currentPage - 1);
+                      }}>
+                      Previous
+                    </btn>
+                  </li>
+                  {[...new Array(totalPage)].map((item, key) => {
+                    let position = ++key;
+                    return (
+                      <li className="page-item" key={key}>
+                        <btn
+                          className={`page-link ${
+                            currentPage === position ? "active" : ""
+                          }`}
+                          onClick={() => {
+                            fetchPagination(position);
+                          }}>
+                          {position}
+                        </btn>
+                      </li>
+                    );
+                  })}
+                  <li class="page-item">
+                    <btn
+                      class={`page-link ${
+                        currentPage === totalPage ? "disabled" : ""
+                      }`}
+                      onClick={() => {
+                        if (currentPage < totalPage) {
+                          fetchPagination(currentPage + 1);
+                        }
+                      }}>
+                      Next
+                    </btn>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          )}
         </section>
 
         {/* <!-- ! footer--> */}

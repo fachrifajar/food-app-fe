@@ -15,13 +15,13 @@ const DetailRecipe = () => {
       name: "Chicken Curry",
       image: "/images/home/chicken-kare.jpg",
       ingredients: [
-        "Sunflower oil (2 tbsp)",
-        "Onion (1 pcs)",
-        "Garlic cloves (2 pcs)",
-        "Ginger (Thumb Size)",
-        "Chicken Thights / Breasts (6 pcs)",
-        "Medium spice paste (3 tbsp)",
-        "Chopped tomatoes (400 g)",
+        "Sunflower oil (2 tbsp) - Use the Fresh Sunflower Oil / Palm Oil",
+        "Onion (1 pcs) - Thinly sliced",
+        "Garlic cloves (2 pcs) - Crushed",
+        "Ginger (Thumb Size) - Grated",
+        "Chicken Thights / Breasts (6 pcs) - Boneless and Skinless OR you can use any chicken that you like",
+        "Medium spice paste (3 tbsp) - Tikka spices works well",
+        "Chopped tomatoes (400 g) - Cut dices Tomatoes",
       ],
       descriptions: [
         "Use the Fresh Sunflower Oil / Palm Oil",
@@ -38,12 +38,12 @@ const DetailRecipe = () => {
       name: "Bomb Chicken",
       image: "/images/home/bomb-chicken.jpg",
       ingredients: [
-        "Ground Chicken",
-        "Vegetables",
-        "Seasonings",
-        "Round dumpling wrappers",
-        "Vegetable oil and water",
-        "Black sesame seeds",
+        "Ground Chicken - 2 pcs of Ground Chicken",
+        "Vegetables - green onions, carrots, corn, and peas. Feel free to substitute with different vegetables such as cabbage, green beans, bok choy or chives",
+        "Seasonings - fresh ginger, rice cooking wine, soy sauce, sesame oil, white pepper, sugar, and salt",
+        "Round dumpling wrappers - we love making our own Homemade Dumpling Wrappers, but feel free to use store-bought for convenience",
+        `Vegetable oil and water - for "steam-frying"`,
+        "Black sesame seeds - for garnish",
       ],
       descriptions: [
         "2 pcs of Ground Chicken",
@@ -59,12 +59,12 @@ const DetailRecipe = () => {
       name: "Salted Brown Butter Pancake",
       image: "/images/home/pancake.jpg",
       ingredients: [
-        "Butter",
-        "Egg",
-        "Brown Sugar",
-        "Milk",
-        "Flour",
-        "Baking Staples",
+        "Butter - 3 tablespoons salted butter",
+        "Egg - 1 egg, at room temperature (very important)",
+        "Brown Sugar - tablespoons brown sugar (or sub coconut sugar)",
+        "Milk - 1 cup milk of choice",
+        "Flour - 1 cup all purpose flour",
+        "Baking Staples - ½ tablespoon vanilla extract, 1 tablespoon baking powder, ¼ teaspoon salt",
       ],
       descriptions: [
         "3 tablespoons salted butter",
@@ -80,10 +80,10 @@ const DetailRecipe = () => {
       name: "Banana Smoothie Pop",
       image: "/images/home/banana-smoothie-pop.jpg",
       ingredients: [
-        "Banana",
-        "Half an orange",
-        "Plain or Greek yogurt ",
-        "Water or milk",
+        "Banana - I use one banana to make one large or two smaller (kid-size) smoothies. For the best tasting smoothie, use a ripe banana. For the creamiest banana smoothie, use frozen banana slices. I’ve shared how I freeze bananas for smoothies below.",
+        "Half an orange - When I have oranges in the house, I love adding them to my morning smoothie. It adds extra vitamin C and tropical flavor. If you don’t have oranges on hand, don’t worry, you can substitute other fruits like mango, pineapple, and berries.",
+        "Plain or Greek yogurt - I don’t always add yogurt to my smoothies, but when I do have it in the fridge, adding a spoonful ensures a protein-packed and creamy smoothie. For a smoothie without yogurt, add a little extra fruit or include veggies like spinach or kale.",
+        "Water or milk - To help the ingredients blend, I like adding a splash of liquid to the blender. For a smoothie without milk, use water. It still tastes amazing. For more creaminess add milk (dairy or non-dairy both work).",
       ],
       descriptions: [
         "I use one banana to make one large or two smaller (kid-size) smoothies. For the best tasting smoothie, use a ripe banana. For the creamiest banana smoothie, use frozen banana slices. I’ve shared how I freeze bananas for smoothies below.",
@@ -97,14 +97,14 @@ const DetailRecipe = () => {
       name: "Caramel White Cake",
       image: "/images/home/caramel-white-cake.jpg",
       ingredients: [
-        "Softened Salted Butter",
-        "Golden caster sugar",
-        "Light brown soft sugar",
-        "Vanilla extract",
-        "Eggs",
-        "Self raising flour",
-        "Milk",
-        "toffee",
+        "Softened Salted Butter - 225 g",
+        "Golden caster sugar - 125 g",
+        "Light brown soft sugar - 100 g",
+        "Vanilla extract - 1 tsp",
+        "Eggs - 4 pcs",
+        "Self raising flour - 225 g",
+        "Milk - 2 tbsp",
+        "toffee - chocolate or caramel pieces, to decorate",
       ],
       descriptions: [
         "225 g",
@@ -122,16 +122,16 @@ const DetailRecipe = () => {
       name: "Grilled Salmon",
       image: "/images/home/grilled-salmon.jpg",
       ingredients: [
-        "Lemon",
-        "Wholegrain mustard",
-        "Clear honey",
-        "Skinless salmon fillets",
-        "Rapeseed oil",
-        "Spring onions",
-        "Cooked beetroot",
-        "Pack ready-to-eat puy lentils",
-        "Basil leaves",
-        "Big handful rocket",
+        "Lemon - 1 (zested and juiced)",
+        "Wholegrain mustard - 2 tsp",
+        "Clear honey - 1 tbsp",
+        "Skinless salmon fillets - 2 pcs",
+        "Rapeseed oil - 2 tsp",
+        "Spring onions - 5 pcs",
+        "Cooked beetroot - 175 g (not in vinegar) diced",
+        "Pack ready-to-eat puy lentils - 250 g",
+        "Basil leaves - 10 pcs",
+        "Big handful rocket - 2 pcs",
       ],
       descriptions: [
         "1 (zested and juiced)",
@@ -151,18 +151,18 @@ const DetailRecipe = () => {
       name: "Special Biryani",
       image: "/images/home/special-biryani.jpg",
       ingredients: [
-        "Basmati rice",
-        "Butter",
-        "Onion",
-        "Bay leaf",
-        "Cardamom pods",
-        "Cinnamon stick",
-        "Turmeric",
-        "Skinless chicken breast",
-        "Balti curry paste",
-        "Raisins",
-        "Chicken stock",
-        "Coriander",
+        "Basmati rice - 300 g",
+        "Butter - 25 g",
+        "Onion - 1 pcs, Finely Sliced",
+        "Bay leaf - 1 pcs",
+        "Cardamom pods - 3 pcs",
+        "Cinnamon stick - small",
+        "Turmeric - 1 tsp",
+        "Skinless chicken breast - 4 pcs",
+        "Balti curry paste - 4 tbsp",
+        "Raisins - 85 g",
+        "Chicken stock - 850 ml",
+        "Coriander - 30 g",
       ],
       descriptions: [
         "300 g",
@@ -233,9 +233,9 @@ const DetailRecipe = () => {
                 <div className="selected-image mb-1 d-flex align-items-center justify-content-center">
                   <img src={popularRecipe.image} alt={popularRecipe.name} />
                   <div className="icon-container">
-                    <button className="btn btn-primary icon-link">
+                    <btn className="btn btn-primary icon-link">
                       <i className="fas fa-bookmark"></i>
-                    </button>
+                    </btn>
                     <btn className="btn btn-primary icon-link">
                       <i className="fas fa-thumbs-up"></i>
                     </btn>
@@ -257,7 +257,7 @@ const DetailRecipe = () => {
                     <IngredientsList
                       key={index}
                       ingredients={ingredient}
-                      descriptions={popularRecipe.descriptions[index]}
+                      // descriptions={popularRecipe.descriptions[index]}
                     />
                   ))}
                 </ul>
