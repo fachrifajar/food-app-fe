@@ -1,4 +1,3 @@
-import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/home";
 import Login from "./pages/login";
@@ -9,16 +8,19 @@ import DetailRecipe from "./pages/detail-recipe";
 import DetailVid from "./pages/detail-vid";
 import Maintenance from "./pages/maintenance";
 import ForgotPassword from "./pages/forgot-password";
+import React from "react";
 
+// import redux
+import { store } from "./store/index";
+import { Provider } from "react-redux";
 
-
+// functional component
 function App() {
   const maintenance = ["/forgot-password"];
-  const isMaintenance = process.env.REACT_APP_IS_MAINTENANCE === "true" && maintenance.some((result) => window.location.pathname.startsWith(result));
-
-  if (isMaintenance) {
-    return <Maintenance />;
-  }
+  const [isPageMaintenance, setIsPageMaintenance] = React.useState(
+    process.env.REACT_APP_IS_MAINTENANCE === "true" &&
+      maintenance.find((res) => res === document.location.pathname)
+  );
 
   const router = createBrowserRouter([
     {
@@ -55,9 +57,22 @@ function App() {
     },
   ]);
 
-  return createRoot(document.getElementById("root")).render(
-    <RouterProvider router={router} />
-  );
+  if (isPageMaintenance) {
+    return (
+      <Maintenance
+        maintenanceList={maintenance}
+        turnOnMaintenance={() => setIsPageMaintenance(true)}
+        turnOffMaintenance={() => setIsPageMaintenance(false)}
+      />
+    );
+  } else {
+    // JSX
+    return (
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    );
+  }
 }
 
 export default App;

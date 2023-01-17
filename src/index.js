@@ -6,4 +6,5 @@ import "bootstrap/dist/js/bootstrap";
 // import "bootstrap/dist/css/bootstrap.min.css"; //react bootstrap npm
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(<App />);

@@ -3,10 +3,20 @@ import { Link } from "react-router-dom";
 import Helmet from "react-helmet";
 import "../styles/sign-up.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  
+
+  const [email, setEmail] = React.useState("");
+  const [username, SetUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [ReEnterPassword, SetReEnterPassword] = React.useState("");
+  const [phone_number, Setphone_number] = React.useState("");
+  const [isError, setIsError] = React.useState(false);
+  const [errMsg, setErrMsg] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
+
   React.useEffect(() => {
     const isLogin = localStorage.getItem("isLogin");
     const token = localStorage.getItem("token");
@@ -42,12 +52,20 @@ const SignUp = () => {
               <div className="mb-3 form-group">
                 <h1>Let's Get Started !</h1>
                 <p>Create new account to access all features</p>
+
+                {isError ? (
+                  <div class="alert alert-danger" role="alert">
+                    {errMsg}
+                  </div>
+                ) : null}
+
                 <label for="text">Name</label>
                 <input
                   type="text"
                   className="form-control"
                   id="name"
                   placeholder="Enter your Name"
+                  onChange={(event) => SetUsername(event.target.value)}
                 />
               </div>
               {/* <!--@ Input Email --> */}
@@ -59,6 +77,7 @@ const SignUp = () => {
                   id="email"
                   aria-describedby="emailHelp"
                   placeholder="Enter email"
+                  onChange={(event) => setEmail(event.target.value)}
                 />
               </div>
               {/* <!--@ Phone Number --> */}
@@ -69,6 +88,7 @@ const SignUp = () => {
                   className="form-control"
                   id="phone-number"
                   placeholder="Enter your Phone Number"
+                  onChange={(event) => Setphone_number(event.target.value)}
                 />
               </div>
               {/* <!--@ Input Password --> */}
@@ -79,6 +99,7 @@ const SignUp = () => {
                   className="form-control"
                   id="password"
                   placeholder="Enter password"
+                  onChange={(event) => setPassword(event.target.value)}
                 />
               </div>
               {/* <!--@ Re Input Password --> */}
@@ -89,6 +110,7 @@ const SignUp = () => {
                   className="form-control"
                   id="re-enter-password"
                   placeholder="Re-Enter password"
+                  onChange={(event) => SetReEnterPassword(event.target.value)}
                 />
               </div>
               {/* <!--@ Checkbox button --> */}
@@ -104,9 +126,64 @@ const SignUp = () => {
               </div>
               {/* <!--@ Submit button --> */}
               <div className="d-grid">
-                <Link to="/" className="btn btn-primary">
-                  Register Account
-                </Link>
+                <button
+                  type="button"
+                  className={`btn btn-primary ${
+                    isLoading ? "btn-loading" : ""
+                  }`}
+                  disabled={isLoading}
+                  onClick={() => {
+                    if (!document.getElementById("terms").checked) {
+                      setIsError(true);
+                      setErrMsg(
+                        "Please agree to the terms and conditions to continue."
+                      );
+                      return;
+                    }
+                    setIsLoading(true);
+                    axios
+                      .post(
+                        `${process.env.REACT_APP_URL_BACKEND}/users/register`,
+                        {
+                          email,
+                          password,
+                          username,
+                          phone_number,
+                        }
+                      )
+                      .then((res) => {
+                        console.log(res);
+                        alert("Account created successfully");
+                        navigate("/");
+
+                      })
+                      .catch((err) => {
+                        setIsError(true);
+                        console.log(err);
+                        setErrMsg(
+                          err?.response?.data?.message?.message ??
+                            err?.response?.data?.message?.username?.message ??
+                            err?.response?.data?.message?.email?.message ??
+                            err?.response?.data?.message?.phone_number
+                              ?.message ??
+                            err?.response?.data?.message?.password?.message ??
+                            "Internal server error, please try again later"
+                        );
+                      })
+                      .finally(() => {
+                        setIsLoading(false);
+                      });
+                  }}>
+                  {isLoading ? (
+                    <span
+                      class="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"></span>
+                  ) : (
+                    ""
+                  )}
+                  {isLoading ? "Loading..." : "Log in"}
+                </button>
               </div>
               {/* <!-- @ link to login --> */}
               <p className="already-have-account">

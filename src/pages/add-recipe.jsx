@@ -1,9 +1,10 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useRef } from "react";
 import Helmet from "react-helmet";
 import "../styles/add-recipe.css";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function AddRecipe() {
   const navigate = useNavigate();
@@ -59,6 +60,27 @@ function AddRecipe() {
       });
   }, [navigate]); //delete navigate if error happens
 
+  const fileInput = useRef(null);
+
+  const handleAddRecipe = async (event) => {
+    event.preventDefault();
+    try {
+      const { title, ingredients, video } = event.target.elements;
+      const formData = new FormData();
+      formData.append("title", title.value);
+      formData.append("ingredients", ingredients.value);
+      formData.append("video", video.value);
+      formData.append("file", fileInput.current.files[0]);
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_URL_BACKEND}/users/recipes/add`,
+        formData
+      );
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="add-recipe">
       <Helmet>
@@ -77,8 +99,8 @@ function AddRecipe() {
                   {/* <!-- Create the input element and set the event handlers --> */}
                   <div
                     id="drop-zone"
-                    ondragover="onDragOver(event)"
-                    ondrop="onDrop(event)">
+                    onDragOver={"onDragOver(event)"}
+                    onDrop={"onDrop(event)"}>
                     {/* <!-- Add the photo icon and the input button --> */}
                     <div id="photo-icon"></div>
                     <img src="/images/add-photo/icon-image.png" alt="icon" />
@@ -87,7 +109,7 @@ function AddRecipe() {
                       type="file"
                       id="file-input"
                       multiple
-                      onchange="onFileSelected(event)"
+                      onChange={"onFileSelected(event)"}
                     />
                     <div id="loading-animation"></div>
                     <div id="notification"></div>
