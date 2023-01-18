@@ -67,17 +67,32 @@ function AddRecipe() {
     try {
       const { title, ingredients, video } = event.target.elements;
       const formData = new FormData();
-      formData.append("title", title.value);
-      formData.append("ingredients", ingredients.value);
-      formData.append("video", video.value);
-      formData.append("file", fileInput.current.files[0]);
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_URL_BACKEND}/users/recipes/add`,
+      formData.append("file", fileInput.current.files[0]); //photo
+
+      // send photo to recipe_photos db
+      await axios.post(
+        `${process.env.REACT_APP_URL_BACKEND}/users/recipes/add/photos`,
         formData
       );
+
+      // send title & ingredients to recipes db
+      await axios.post(
+        `${process.env.REACT_APP_URL_BACKEND}/users/recipes/add`,
+        { title: title.value, ingredients: ingredients.value }
+      );
+
+      // send video to recipe_videos db
+      await axios.post(
+        `${process.env.REACT_APP_URL_BACKEND}/users/recipes/add/videos`,
+        { video: video.value }
+      );
+
       navigate("/");
     } catch (error) {
       console.error(error);
+      alert(
+        "An error occurred while trying to add recipe. Please try again later."
+      );
     }
   };
 

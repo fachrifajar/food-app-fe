@@ -5,7 +5,8 @@ import "../styles/mobile-home.css";
 import Helmet from "react-helmet";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import RecipeCard from "../components/recipe-card";
+// import RecipeCard from "../components/recipe-card";
+import PopularCard from "../components/popular-card";
 import Spinner from "../components/molecules/spinner";
 import axios from "axios";
 
@@ -58,6 +59,7 @@ function Home() {
   // }, []);
 
   const [recipeCardContainers, SetRecipeCardContainers] = React.useState([]);
+  const [newRecipes, setNewRecipes] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [totalPage, setTotalPage] = React.useState(1);
@@ -65,10 +67,19 @@ function Home() {
   React.useEffect(() => {
     axios
       .get(
+        `${process.env.REACT_APP_URL_BACKEND}/users/recipes/search/?sort=DESC`
+      )
+      .then(({ data }) => {
+        console.log(data?.data?.[0]);
+        setNewRecipes(data?.data?.[0]);
+      })
+      .catch((err) => setNewRecipes([]));
+
+    axios
+      .get(
         `${process.env.REACT_APP_URL_BACKEND}/users/recipes/search/?page=1&limit=6&sort=DESC`
       )
       .then(({ data }) => {
-        console.log(parseInt(data?.total));
         SetRecipeCardContainers(data?.data);
         setTotalPage(parseInt(Math.ceil(data?.total / 6)));
       })
@@ -77,11 +88,12 @@ function Home() {
   }, []);
 
   const fetchPagination = (pageParam) => {
+    const offset = (pageParam - 1) * 6 + 1;
     setIsLoading(true);
     SetRecipeCardContainers([]);
     axios
       .get(
-        `${process.env.REACT_APP_URL_BACKEND}/users/recipes/search/?page=${pageParam}&limit=6&sort=DESC`
+        `${process.env.REACT_APP_URL_BACKEND}/users/recipes/search/?page=${pageParam}&limit=6&offset=${offset}&sort=DESC`
       )
       .then(({ data }) => {
         SetRecipeCardContainers(data?.data);
@@ -166,22 +178,25 @@ function Home() {
               {/* <!-- ! left side --> */}
               <div className="col-6">
                 <img
-                  src="/images/home/new-recipe-1.jpg"
+                  src={
+                    "https://res.cloudinary.com/daouvimjz/image/upload/" +
+                    newRecipes?.recipe_photos
+                  }
                   className="main-image"
                   id="new-recipe-image-id"
-                  alt="burger"
+                  alt={newRecipes?.title}
                 />
               </div>
+
               {/* <!-- ! right side --> */}
               <div className="col-5 offset-1">
                 <h2 id="new-recipe-title-id">
-                  Healthy Juicy Chicken Burger <br />
-                  (Quick & Easy)
+                  {newRecipes?.title} <br />
                 </h2>
+                <h4>(Quick & Easy)</h4>
                 <span className="line-under-title"></span>
                 <p id="new-recipe-description-id">
-                  Quick + Easy Juicy Chicken Burger- Healthy Chicken Burger?
-                  That’s right!
+                  Quick + Easy Healthy {newRecipes?.title}? That’s right!
                 </p>
                 <p>
                   <Link to="/detail-recipe/salted-brown-butter-pancake">
@@ -213,7 +228,7 @@ function Home() {
               {!isLoading &&
                 recipeCardContainers.map((item, key) => (
                   <div className="col-4" key={key}>
-                    <RecipeCard
+                    <PopularCard
                       src={
                         "https://res.cloudinary.com/daouvimjz/image/upload/" +
                         item?.recipe_photos[0]

@@ -199,9 +199,15 @@
 #new-recipe h2 {
   font-style: normal;
   font-weight: 500;
-  font-size: 32px;
+  font-size: 34px;
   line-height: 53px;
   /* letter-spacing: 0.1em; */
+  color: #3f3a3a;
+}
+
+#new-recipe h4 {
+  font-weight: 500;
+
   color: #3f3a3a;
 }
 
@@ -250,6 +256,16 @@
   cursor: pointer;
   height: 400px;
   position: relative;
+  border-radius: 10px;
+  border-color: #fff5ec;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.29);
+}
+
+#popular-recipe .clickable-image:hover {
+  transform: scale(1.1);
+  transition: 0.7s;
+  /* border-radius: 50%; */
+  opacity: 0.9;
 }
 
 #popular-recipe .clickable-image img {
@@ -258,7 +274,25 @@
   object-fit: cover;
 }
 
-#popular-recipe .clickable-image img:hover {
+/* #popular-recipe .clickable-image img:hover {
+  transform: scale(1.1);
+  transition: 0.7s;
+  border-radius: 50%;
+  opacity: 0.9;
+} */
+
+#popular-recipe .card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+#popular-recipe .image-title:hover {
   transform: scale(1.1);
   transition: 0.7s;
   border-radius: 50%;
@@ -269,15 +303,16 @@
   position: absolute;
   z-index: 1;
   bottom: 0;
-  margin: 20px;
-  text-shadow: 3px 0px 5px rgba(0, 0, 0, 0.29);
+  margin-bottom: 5px;
+  font-weight: 700;
+  /* text-shadow: 3px 0px 5px rgba(0, 0, 0, 0.29); */
   color: #3f3a3a;
-
-  max-width: 150px; /* set the desired max-width of the container */
-  white-space: pre-wrap; /* allow the text to wrap and add space when it exceeds the max-width */
-  overflow: hidden; /* hide the text that overflows the container */
-  text-overflow: ellipsis; /* display an ellipsis when the text overflows the container */
+  /* max-width: 150px; */
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 /* @ END OF POPULAR RECIPE / content-2 */
 
 /* @ start footer css */

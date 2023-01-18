@@ -1,25 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { act } from "react-dom/test-utils";
 
-const recipe = createSlice({
-  name: "recipe",
+const auth = createSlice({
+  name: "auth",
   initialState: {
     data: null,
-    slug: null,
+    id: null,
+    token: null,
+    isLogin: null,
   },
   reducers: {
-    setDetail(state, action) {
+    setAuth(state, action) {
       state.data = action.payload.data;
-      state.slug = action.payload.slug;
-    },
-    getDetail(state) {
-      return {
-        data: state?.data,
-        slug: state?.slug,
-      };
+      state.id = action.payload.id;
+      state.token = action.payload.token;
+      state.isLogin = action.payload.isLogin;
     },
   },
 });
 
-export const { setDetail, getDetail } = recipe.actions;
-export default recipe.reducer;
+export const { setAuth } = auth.actions;
+export default auth.reducer;

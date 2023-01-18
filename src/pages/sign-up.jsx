@@ -154,7 +154,7 @@ const SignUp = () => {
                       .then((res) => {
                         console.log(res);
                         alert("Account created successfully");
-                        navigate("/");
+                        navigate("/login");
 
                       })
                       .catch((err) => {
