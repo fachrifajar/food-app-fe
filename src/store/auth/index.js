@@ -1,24 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const recipe = createSlice({
-  name: "recipe",
+const auth = createSlice({
+  name: "auth",
   initialState: {
     data: null,
-    slug: null,
+    token: null,
+    isLogin: null,
   },
   reducers: {
-    setDetail(state, action) {
+    setAuth(state, action) {
+      console.log("test1", action.payload, "test2");
       state.data = action.payload.data;
-      state.slug = action.payload.slug;
-    },
-    getDetail(state) {
-      return {
-        data: state?.data,
-        slug: state?.slug,
-      };
+      state.token = action.payload.token;
+      state.isLogin = action.payload.isLogin;
     },
   },
 });
 
-export const { setDetail, getDetail } = recipe.actions;
-export default recipe.reducer;
+export const { setAuth } = auth.actions;
+export default auth.reducer;

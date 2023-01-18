@@ -5,18 +5,20 @@ import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 function AddRecipe() {
   const navigate = useNavigate();
+  const user = useSelector((state) => state.auth);
+  const isAuth = user?.isLogin;
 
   useEffect(() => {
-    const isLogin = localStorage.getItem("isLogin");
-    const token = localStorage.getItem("token");
-
-    if ((isLogin && token) === null) {
-      navigate("/"); //auto navigate to homepage (restricted to auth user)
+    if (!isAuth) {
+      navigate("/");
     }
+  }, [isAuth, navigate]);
 
+  useEffect(() => {
     document
       .getElementById("title")
       .addEventListener("keydown", function (event) {

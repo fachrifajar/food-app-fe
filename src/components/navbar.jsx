@@ -1,16 +1,25 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import "../styles/navbar.css";
+import * as authReducer from "../store/auth/index";
+import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = () => {
-  const isLogin = localStorage.getItem("isLogin");
-  const token = localStorage.getItem("token");
-  const isAuth = (isLogin && token) !== null;
-  console.log(isAuth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth);
+  
+  const isAuth = user?.isLogin;
+  const profPict = user?.data?.profilePicture;
+  // console.log(user?.request?.status);
+  // const isLogin = localStorage.getItem("isLogin");
+  // const token = localStorage.getItem("token");
+  // const isAuth = (isLogin && token) !== null;
+  // console.log(isAuth);
 
-  const profPict = localStorage.getItem("profPict");
+  // const profPict = localStorage.getItem("profPict");
 
   const location = useLocation();
   React.useEffect(() => {
@@ -44,14 +53,13 @@ const Navbar = () => {
         navbar.classList.remove("hidden");
       }, 1500);
     });
-    // End of animations to navbar (disappear while scroll & show while stop and scrolling to top)
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("isLogin");
-    localStorage.removeItem("token");
-    localStorage.removeItem("profPict");
-  };
+  // const handleLogout = () => {
+  //   localStorage.removeItem("isLogin");
+  //   localStorage.removeItem("token");
+  //   localStorage.removeItem("profPict");
+  // };
 
   const [showModal, setShowModal] = React.useState(false);
 
@@ -128,7 +136,14 @@ const Navbar = () => {
                 <button
                   type="button"
                   className="btn btn-outline-light"
-                  onClick={handleLogout}>
+                  onClick={() => {
+                    dispatch(
+                      authReducer.setAuth({
+                        data: null,
+                      })
+                    );
+                    navigate("/");
+                  }}>
                   Log Out
                 </button>
               </Link>

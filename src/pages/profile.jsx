@@ -3,6 +3,8 @@ import Helmet from "react-helmet";
 import "../styles/profile.css";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 // function ImageContainer({ images }) {
 //   return (
@@ -15,9 +17,13 @@ import Footer from "../components/footer";
 // }
 
 function Profile() {
-  const username = localStorage.getItem("username");
-  const profPict = localStorage.getItem("profPict");
-  console.log(username);
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth);
+  const isAuth = user?.isLogin;
+  const profPict = user?.data?.profilePicture;
+  const username = user?.data?.username;
+
+  const [selectedTab, setSelectedTab] = useState("myRecipe");
 
   const images = {
     myRecipe: ["/images/home/pancake.jpg", "/images/home/new-recipe-1.jpg"],
@@ -30,7 +36,15 @@ function Profile() {
       "/images/home/chicken-kare.jpg",
     ],
   };
-  const [selectedTab, setSelectedTab] = useState("myRecipe");
+
+  React.useEffect(() => {
+    // const isLogin = localStorage.getItem("isLogin");
+    // const token = localStorage.getItem("token");
+
+    if (!isAuth) {
+      navigate("/");
+    }
+  }, [isAuth, navigate]);
 
   return (
     <div className="profile">

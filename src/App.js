@@ -11,7 +11,7 @@ import ForgotPassword from "./pages/forgot-password";
 import React from "react";
 
 // import redux
-import { store } from "./store/index";
+import store, { persistor } from "./store/index";
 import { Provider } from "react-redux";
 
 // functional component

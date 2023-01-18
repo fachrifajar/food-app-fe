@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Helmet from "react-helmet";
 import "../styles/login.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import * as authReducer from "../store/auth/index";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -13,14 +14,73 @@ const Login = () => {
   const [errMsg, setErrMsg] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
 
-  React.useEffect(() => {
-    const isLogin = localStorage.getItem("isLogin");
-    const token = localStorage.getItem("token");
+  //redux connect
+  const user = useSelector((state) => state.auth);
 
-    if ((isLogin && token) !== null) {
-      navigate("/"); //auto navigate to homepage (restricted to auth user)
+  //redux - get local storage
+  const isAuth = user?.isLogin;
+  const dispatch = useDispatch();
+
+  const login = () => {
+    if (!document.getElementById("terms").checked) {
+      setIsError(true);
+      setErrMsg("Please agree to the terms and conditions to continue.");
+      return;
     }
-  }, [navigate]);
+    setIsLoading(true);
+    axios
+      .post(`${process.env.REACT_APP_URL_BACKEND}/auth/login`, {
+        email,
+        password,
+      })
+      .then((res) => {
+        // save to redux
+
+        dispatch(
+          authReducer.setAuth({
+            data: res?.data?.data,
+            token: res?.data?.data?.accessToken,
+            isLogin: true,
+          })
+        );
+
+        // localStorage.setItem("isLogin", true);
+        // localStorage.setItem(
+        //   "token",
+        //   res?.data?.data?.accessToken ?? ""
+        // );
+        // localStorage.setItem(
+        //   "profPict",
+        //   res?.data?.data?.profilePicture ?? ""
+        // );
+        // localStorage.setItem(
+        //   "username",
+        //   res?.data?.data?.username ?? ""
+        // );
+        setIsError(false);
+        navigate("/"); //redirect to home page
+        console.log(res);
+      })
+      .catch((err) => {
+        setIsError(true);
+        setErrMsg(
+          err?.response?.data?.message?.message ??
+            err?.response?.data?.message?.email?.message ??
+            err?.response?.data?.message?.password?.message ??
+            "Internal server error, please try again later"
+        );
+      })
+      .finally(() => setIsLoading(false));
+  };
+
+  React.useEffect(() => {
+    // const isLogin = localStorage.getItem("isLogin");
+    // const token = localStorage.getItem("token");
+
+    if (isAuth) {
+      navigate("/");
+    }
+  }, [isAuth, navigate]);
 
   return (
     <div className="login-page">
@@ -90,48 +150,7 @@ const Login = () => {
                     isLoading ? "btn-loading" : ""
                   }`}
                   disabled={isLoading}
-                  onClick={() => {
-                    if (!document.getElementById("terms").checked) {
-                      setIsError(true);
-                      setErrMsg(
-                        "Please agree to the terms and conditions to continue."
-                      );
-                      return;
-                    }
-                    setIsLoading(true);
-                    axios
-                      .post(`${process.env.REACT_APP_URL_BACKEND}/auth/login`, {
-                        email,
-                        password,
-                      })
-                      .then((res) => {
-                        localStorage.setItem("isLogin", true);
-                        localStorage.setItem(
-                          "token",
-                          res?.data?.data?.accessToken ?? ""
-                        );
-                        localStorage.setItem(
-                          "profPict",
-                          res?.data?.data?.profilePicture ?? ""
-                        );
-                        localStorage.setItem(
-                          "username",
-                          res?.data?.data?.username ?? ""
-                        );
-                        navigate("/"); //redirect to home page
-                        console.log(res);
-                      })
-                      .catch((err) => {
-                        setIsError(true);
-                        setErrMsg(
-                          err?.response?.data?.message?.message ??
-                            err?.response?.data?.message?.email?.message ??
-                            err?.response?.data?.message?.password?.message ??
-                            "Internal server error, please try again later"
-                        );
-                      })
-                      .finally(() => setIsLoading(false));
-                  }}>
+                  onClick={login}>
                   {isLoading ? (
                     <span
                       class="spinner-border spinner-border-sm"
