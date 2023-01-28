@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/home.css";
 import "../styles/mobile-home.css";
 import Helmet from "react-helmet";
@@ -9,6 +9,8 @@ import Footer from "../components/footer";
 import PopularCard from "../components/popular-card";
 import Spinner from "../components/molecules/spinner";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import * as recipeReducer from "../store/recipes/index";
 
 function Home() {
   const [recipeCardContainers, SetRecipeCardContainers] = React.useState([]); //menu
@@ -17,6 +19,10 @@ function Home() {
   const [currentPage, setCurrentPage] = React.useState(1);
   const [totalPage, setTotalPage] = React.useState(1);
   const [titlez, setTitlez] = React.useState("Search Recipes...");
+  const [disablePagination, setDisablePagination] = React.useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     axios
@@ -26,6 +32,7 @@ function Home() {
       .then(({ data }) => {
         console.log(data?.data?.[0]);
         setNewRecipes(data?.data?.[0]);
+        setDisablePagination(false);
       })
       .catch((err) => setNewRecipes([]));
 
@@ -36,6 +43,7 @@ function Home() {
       .then(({ data }) => {
         SetRecipeCardContainers(data?.data);
         setTotalPage(parseInt(Math.ceil(data?.total / 6)));
+        setDisablePagination(false);
       })
       .catch((err) => SetRecipeCardContainers([]))
       .finally(() => setIsLoading(false));
@@ -53,6 +61,7 @@ function Home() {
         SetRecipeCardContainers(data?.data);
         setTotalPage(parseInt(Math.ceil(data?.total / 6)));
         setCurrentPage(pageParam);
+        setDisablePagination(false);
       })
       .catch((err) => SetRecipeCardContainers([]))
       .finally(() => setIsLoading(false));
@@ -69,9 +78,7 @@ function Home() {
       )
       .then(({ data }) => {
         SetRecipeCardContainers(data?.data);
-        console.log("bytitle atas");
-        console.log(data?.data);
-        console.log("bytitle bawah");
+        setDisablePagination(true);
       })
       .catch((err) => SetRecipeCardContainers([]))
       .finally(() => setIsLoading(false));
@@ -181,14 +188,35 @@ function Home() {
                   Quick + Easy Healthy {newRecipes?.title}? That’s right!
                 </p>
                 <p>
-                  <Link to={"/detail-recipe/" + newRecipes?.slug}>
-                    <button
-                      className="btn btn-primary btn-lg"
-                      type="button"
-                      id="new-recipe-button-id">
-                      Learn More
-                    </button>
-                  </Link>
+                  {/* <Link to={"/detail-recipe/" + newRecipes?.slug}> */}
+                  <button
+                    className="btn btn-primary btn-lg"
+                    type="button"
+                    id="new-recipe-button-id"
+                    onClick={() => {
+                      axios
+                        .get(
+                          `${process.env.REACT_APP_URL_BACKEND}/users/recipes/search/${newRecipes?.slug}`
+                        )
+                        .then((response) => {
+                          console.log("tes1");
+                          console.log(newRecipes);
+                          console.log("tes2");
+                          dispatch(
+                            recipeReducer.getDetail({
+                              data: recipeCardContainers?.data?.[0],
+                              slug: newRecipes?.slug,
+                            })
+                          );
+                          navigate(`/detail-recipe/${newRecipes?.slug}`);
+                        })
+                        .catch((error) => {
+                          console.log(error);
+                        });
+                    }}>
+                    Learn More
+                  </button>
+                  {/* </Link> */}
                 </p>
               </div>
             </div>
@@ -222,7 +250,7 @@ function Home() {
                 ))}
             </div>
           </div>
-          {isLoading ? null : (
+          {!isLoading && !disablePagination && (
             <div className="container d-flex align-items-center justify-content-center">
               <nav aria-label="Page navigation example">
                 <ul className="pagination">

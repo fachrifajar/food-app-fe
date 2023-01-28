@@ -59,7 +59,7 @@ const DetailRecipe = () => {
                   <img
                     src={
                       "https://res.cloudinary.com/daouvimjz/image/upload/" +
-                      recipe?.data?.photos
+                      recipe?.data?.photo
                     }
                     alt={recipe?.data?.title}
                   />

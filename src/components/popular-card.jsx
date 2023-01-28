@@ -8,7 +8,7 @@ const PopularCard = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { src, name, url } = props;
-  console.log(src);
+
   return (
     <div>
       <div
