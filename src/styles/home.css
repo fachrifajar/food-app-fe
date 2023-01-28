@@ -229,7 +229,8 @@
 
 /* button under description(2) */
 #new-recipe .btn-primary:hover {
-  background-color: gray;
+  background-color: rgba(239, 200, 26, 0.8);
+  border-color: rgba(239, 200, 26, 0.8);
   color: #fff;
 }
 
@@ -311,6 +312,24 @@
   white-space: pre-wrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+#home-desktop-version .pagination .page-link{
+  background-color: white;
+  border: gray 5px bold;
+  color: #2e266f;
+}
+
+#home-desktop-version .pagination .page-link:hover{
+  background-color: rgba(239, 200, 26, 0.8);
+  border: rgba(239, 200, 26, 0.8);
+  color: #2e266f;
+}
+
+#home-desktop-version .pagination .page-link.active{
+  background-color: rgba(239, 200, 26, 0.8);
+  border: rgba(239, 200, 26, 0.8);
+  color: #2e266f;
 }
 
 /* @ END OF POPULAR RECIPE / content-2 */

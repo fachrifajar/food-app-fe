@@ -60,7 +60,7 @@ function AddRecipe() {
           alert("Recipe added successfully");
         }
       });
-  }, [navigate]); //delete navigate if error happens
+  }, [navigate]); 
 
   const fileInput = useRef(null);
 

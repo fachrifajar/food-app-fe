@@ -1,5 +1,5 @@
 .add-recipe {
-  background-color: #fff5ec;;
+  background-color: #fff5ec;
 }
 
 /*  @HEADER */
@@ -109,7 +109,7 @@
   width: 30%;
 }
 
-.btn:hover {
+#add-recipe .btn:hover {
   background-color: rgba(239, 200, 26, 0.8);
   border-color: rgba(239, 200, 26, 0.8);
 }

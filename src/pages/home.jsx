@@ -11,58 +11,12 @@ import Spinner from "../components/molecules/spinner";
 import axios from "axios";
 
 function Home() {
-  // React.useEffect(() => {
-  //   // Add animations to new-recipe (auto-change content)
-  //   const content = [
-  //     {
-  //       image: "/images/home/new-recipe-1.jpg",
-  //       title: "Healthy Juicy Chicken Burger (Quick & Easy)",
-  //       description:
-  //         "Quick + Easy Juicy Chicken Burger- Healthy Chicken Burger? That’s right!",
-  //       buttonText: "Learn More",
-  //     },
-  //     {
-  //       image: "/images/home/pancake.jpg",
-  //       title: "Salted Brown Butter Pancake",
-  //       description:
-  //         "Delicious, fluffy salted brown butter pancakes with hints of warm, caramel-like flavor in every bite.",
-  //       buttonText: "Learn More",
-  //     },
-  //     // add more objects here for additional content
-  //   ];
-
-  //   let currentContentIndex = 0;
-
-  //   function updateContent() {
-  //     // update the main image
-  //     document.getElementById("new-recipe-image-id").src =
-  //       content[currentContentIndex].image;
-
-  //     // update the title
-  //     document.getElementById("new-recipe-title-id").innerHTML =
-  //       content[currentContentIndex].title;
-
-  //     // update the description
-  //     document.getElementById("new-recipe-description-id").innerHTML =
-  //       content[currentContentIndex].description;
-
-  //     // update the button text
-  //     document.getElementById("new-recipe-button-id").innerHTML =
-  //       content[currentContentIndex].buttonText;
-
-  //     currentContentIndex = (currentContentIndex + 1) % content.length;
-  //   }
-
-  //   setInterval(updateContent, 3000);
-
-  //   // ! End of animations to new-recipe (auto-change content)
-  // }, []);
-
-  const [recipeCardContainers, SetRecipeCardContainers] = React.useState([]);
+  const [recipeCardContainers, SetRecipeCardContainers] = React.useState([]); //menu
   const [newRecipes, setNewRecipes] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [totalPage, setTotalPage] = React.useState(1);
+  const [titlez, setTitlez] = React.useState("Search Recipes...");
 
   React.useEffect(() => {
     axios
@@ -104,6 +58,25 @@ function Home() {
       .finally(() => setIsLoading(false));
   };
 
+  const fetchByTitle = () => {
+    setIsLoading(true);
+    SetRecipeCardContainers([]);
+    axios
+      .get(
+        `${process.env.REACT_APP_URL_BACKEND}/users/recipes/search/${
+          titlez ? titlez : ""
+        }`
+      )
+      .then(({ data }) => {
+        SetRecipeCardContainers(data?.data);
+        console.log("bytitle atas");
+        console.log(data?.data);
+        console.log("bytitle bawah");
+      })
+      .catch((err) => SetRecipeCardContainers([]))
+      .finally(() => setIsLoading(false));
+  };
+
   return (
     <div>
       <Helmet>
@@ -133,6 +106,15 @@ function Home() {
                         placeholder="Search Recipe..."
                         aria-label="Search"
                         autocomplete="off"
+                        onChange={(event) => {
+                          setTitlez(event.target.value);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            window.location.href = "/#popular-recipe";
+                            fetchByTitle();
+                          }
+                        }}
                       />
                     </div>
                   </form>
@@ -180,7 +162,7 @@ function Home() {
                 <img
                   src={
                     "https://res.cloudinary.com/daouvimjz/image/upload/" +
-                    newRecipes?.recipe_photos
+                    newRecipes?.photo
                   }
                   className="main-image"
                   id="new-recipe-image-id"
@@ -199,7 +181,7 @@ function Home() {
                   Quick + Easy Healthy {newRecipes?.title}? That’s right!
                 </p>
                 <p>
-                  <Link to="/detail-recipe/salted-brown-butter-pancake">
+                  <Link to={"/detail-recipe/" + newRecipes?.slug}>
                     <button
                       className="btn btn-primary btn-lg"
                       type="button"
@@ -231,7 +213,7 @@ function Home() {
                     <PopularCard
                       src={
                         "https://res.cloudinary.com/daouvimjz/image/upload/" +
-                        item?.recipe_photos[0]
+                        item?.photo
                       }
                       name={item?.title}
                       url={item?.slug}
