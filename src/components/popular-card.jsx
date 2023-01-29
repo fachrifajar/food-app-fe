@@ -34,7 +34,6 @@ const PopularCard = (props) => {
           src={src}
           height="100%"
           width="100%"
-          loading="lazy"
           alt={name}
         />
         <div className="card-body">

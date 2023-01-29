@@ -268,8 +268,7 @@ const DetailRecipe = () => {
                 src="https://www.youtube.com/embed/xTgU7XtVcC8?controls=1"
                 frameborder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-                loading="lazy"></iframe>
+                allowfullscreen></iframe>
             </div>
           </div>
         </section>

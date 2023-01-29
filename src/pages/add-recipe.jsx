@@ -1,4 +1,4 @@
-import { React, useEffect, useRef } from "react";
+import { React, useEffect, useRef, useState } from "react";
 import Helmet from "react-helmet";
 import "../styles/add-recipe.css";
 import Navbar from "../components/navbar";
@@ -11,6 +11,11 @@ function AddRecipe() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth);
   const isAuth = user?.isLogin;
+  const [isLoading, setIsLoading] = useState(false);
+  const [photo, setPhoto] = useState();
+  const [title, setTitle] = useState("");
+  const [ingredients, setIngredients] = useState("");
+  const [video, setVideo] = useState("");
 
   useEffect(() => {
     if (!isAuth) {
@@ -60,7 +65,7 @@ function AddRecipe() {
           alert("Recipe added successfully");
         }
       });
-  }, [navigate]); 
+  }, [navigate]);
 
   const fileInput = useRef(null);
 
@@ -70,6 +75,20 @@ function AddRecipe() {
       const { title, ingredients, video } = event.target.elements;
       const formData = new FormData();
       formData.append("file", fileInput.current.files[0]); //photo
+
+      setIsLoading(true);
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+
+      let data = new FormData();
+      data.append("photo", photo);
+      data.append("title", title);
+      data.append("ingredients", ingredients);
+      data.append("video", video);
 
       // send photo to recipe_photos db
       await axios.post(

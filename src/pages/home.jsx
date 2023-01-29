@@ -27,14 +27,17 @@ function Home() {
   React.useEffect(() => {
     axios
       .get(
-        `${process.env.REACT_APP_URL_BACKEND}/users/recipes/search/?sort=DESC`
+        `${process.env.REACT_APP_URL_BACKEND}/users/recipes/search/?sort=true&sortType=2`
       )
       .then(({ data }) => {
-        console.log(data?.data?.[0]);
+        // console.log(data?.data?.[0]);
         setNewRecipes(data?.data?.[0]);
         setDisablePagination(false);
       })
-      .catch((err) => setNewRecipes([]));
+      .catch((err) => {
+        setNewRecipes([]);
+        setDisablePagination(true);
+      });
 
     axios
       .get(
@@ -45,7 +48,10 @@ function Home() {
         setTotalPage(parseInt(Math.ceil(data?.total / 6)));
         setDisablePagination(false);
       })
-      .catch((err) => SetRecipeCardContainers([]))
+      .catch((err) => {
+        setNewRecipes([]);
+        setDisablePagination(true);
+      })
       .finally(() => setIsLoading(false));
   }, []);
 
@@ -79,6 +85,27 @@ function Home() {
       .then(({ data }) => {
         SetRecipeCardContainers(data?.data);
         setDisablePagination(true);
+      })
+      .catch((err) => SetRecipeCardContainers([]))
+      .finally(() => setIsLoading(false));
+  };
+
+  const fetchBySort = (pageParam, sortValue) => {
+    const offset = (pageParam - 1) * 6 + 1;
+    if (sortValue) {
+      setIsLoading(true);
+      SetRecipeCardContainers([]);
+    }
+
+    axios
+      .get(
+        `${process.env.REACT_APP_URL_BACKEND}/users/recipes/search/?page=${pageParam}&limit=6&offset=${offset}&sort=true&sortType=${sortValue}`
+      )
+      .then(({ data }) => {
+        SetRecipeCardContainers(data?.data);
+        setTotalPage(parseInt(Math.ceil(data?.total / 6)));
+        setCurrentPage(pageParam);
+        setDisablePagination(false);
       })
       .catch((err) => SetRecipeCardContainers([]))
       .finally(() => setIsLoading(false));
@@ -199,12 +226,13 @@ function Home() {
                           `${process.env.REACT_APP_URL_BACKEND}/users/recipes/search/${newRecipes?.slug}`
                         )
                         .then((response) => {
-                          console.log("tes1");
-                          console.log(newRecipes);
-                          console.log("tes2");
+                          // console.log("tes1");
+                          // console.log(response);
+                          // console.log(newRecipes);
+                          // console.log("tes2");
                           dispatch(
-                            recipeReducer.getDetail({
-                              data: recipeCardContainers?.data?.[0],
+                            recipeReducer.setDetail({
+                              data: newRecipes,
                               slug: newRecipes?.slug,
                             })
                           );
@@ -226,7 +254,26 @@ function Home() {
         {/* <!-- ! popular-recipe /content-2 --> */}
         <section id="popular-recipe">
           <div className="container">
-            <div className="title">Popular Recipe</div>
+            <div className="row d-flex align-items-center justify-content-center">
+              <div className="col">
+                <div className="title">Popular Recipe</div>
+              </div>
+              <div className="col-2">
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  onChange={(event) => {
+                    fetchBySort(currentPage, event.target.value);
+                  }}>
+                  <option selected disabled>
+                    Sort By
+                  </option>
+                  <option value="1">A-Z</option>
+                  <option value="2">Latest Update</option>
+                  {/* <option value="3">Most Popular</option> */}
+                </select>
+              </div>
+            </div>
           </div>
           {isLoading ? <Spinner /> : ""}
           {recipeCardContainers.length === 0 && !isLoading ? (
@@ -250,52 +297,56 @@ function Home() {
                 ))}
             </div>
           </div>
-          {!isLoading && !disablePagination && (
-            <div className="container d-flex align-items-center justify-content-center">
-              <nav aria-label="Page navigation example">
-                <ul className="pagination">
-                  <li className="page-item">
-                    <btn
-                      class={`page-link ${currentPage === 1 ? "disabled" : ""}`}
-                      onClick={() => {
-                        if (currentPage > 1) fetchPagination(currentPage - 1);
-                      }}>
-                      Previous
-                    </btn>
-                  </li>
-                  {[...new Array(totalPage)].map((item, key) => {
-                    let position = ++key;
-                    return (
-                      <li className="page-item" key={key}>
-                        <btn
-                          className={`page-link ${
-                            currentPage === position ? "active" : ""
-                          }`}
-                          onClick={() => {
-                            fetchPagination(position);
-                          }}>
-                          {position}
-                        </btn>
-                      </li>
-                    );
-                  })}
-                  <li class="page-item">
-                    <btn
-                      class={`page-link ${
-                        currentPage === totalPage ? "disabled" : ""
-                      }`}
-                      onClick={() => {
-                        if (currentPage < totalPage) {
-                          fetchPagination(currentPage + 1);
-                        }
-                      }}>
-                      Next
-                    </btn>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          )}
+          {!isLoading &&
+            !disablePagination &&
+            recipeCardContainers.length !== 0 && (
+              <div className="container d-flex align-items-center justify-content-center">
+                <nav aria-label="Page navigation example">
+                  <ul className="pagination">
+                    <li className="page-item">
+                      <btn
+                        class={`page-link ${
+                          currentPage === 1 ? "disabled" : ""
+                        }`}
+                        onClick={() => {
+                          if (currentPage > 1) fetchPagination(currentPage - 1);
+                        }}>
+                        Previous
+                      </btn>
+                    </li>
+                    {[...new Array(totalPage)].map((item, key) => {
+                      let position = ++key;
+                      return (
+                        <li className="page-item" key={key}>
+                          <btn
+                            className={`page-link ${
+                              currentPage === position ? "active" : ""
+                            }`}
+                            onClick={() => {
+                              fetchPagination(position);
+                            }}>
+                            {position}
+                          </btn>
+                        </li>
+                      );
+                    })}
+                    <li class="page-item">
+                      <btn
+                        class={`page-link ${
+                          currentPage === totalPage ? "disabled" : ""
+                        }`}
+                        onClick={() => {
+                          if (currentPage < totalPage) {
+                            fetchPagination(currentPage + 1);
+                          }
+                        }}>
+                        Next
+                      </btn>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            )}
         </section>
 
         {/* <!-- ! footer--> */}

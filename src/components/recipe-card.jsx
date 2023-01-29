@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 //             src={src || "/images/home/chicken-kare.jpg"}
 //             height="100%"
 //             width="100%"
-//             loading="lazy"
 //             alt={name}
 //           />
 //           <h2 className="image-title">{name}</h2>
@@ -53,7 +52,6 @@ const RecipeCard = (props) => {
           src={src || "/images/home/chicken-kare.jpg"}
           height="100%"
           width="100%"
-          loading="lazy"
           alt={name}
         />
         <h2 className="image-title">{name}</h2>
