@@ -10,7 +10,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
-  
+
   const isAuth = user?.isLogin;
   const profPict = user?.data?.profilePicture;
   // console.log(user?.request?.status);
