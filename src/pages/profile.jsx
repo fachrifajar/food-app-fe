@@ -588,7 +588,7 @@ function Profile() {
         <MyCard>
           <CardContent>
             <Typography variant="h4" sx={{ mb: 2 }}>
-              xxx
+              Edit Recipes
             </Typography>
 
             <Stack
