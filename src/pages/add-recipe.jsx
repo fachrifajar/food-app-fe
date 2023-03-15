@@ -1,4 +1,4 @@
-import { React, useEffect, useRef, useState } from "react";
+import { React, useEffect, useState } from "react";
 import Helmet from "react-helmet";
 import "../styles/add-recipe.css";
 import Navbar from "../components/navbar";
@@ -15,7 +15,19 @@ import {
   Button,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { v4 as uuidv4 } from "uuid";
+import LoadingButton from "@mui/lab/LoadingButton";
+
+const MyButton = styled(Button)({
+  width: "200px",
+  borderRadius: "10px",
+  marginTop: "20px",
+  background: "#efc81a",
+  color: "white",
+  "&:hover": {
+    background: "rgba(239, 200, 26, 0.8);",
+    border: "none",
+  },
+});
 
 const MyModal = styled(Modal)({
   display: "flex",
@@ -43,16 +55,20 @@ function AddRecipe() {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [video, setVideo] = useState("");
+  const [showModalSuccess, setShowModalSuccess] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
   const [errMsg, setErrMsg] = useState("");
-  console.log("user---", user);
 
-  console.log("photo===", photo);
-  // console.log("photo===", `${photo.name}/${uuidv4()}`);
-  console.log("title===", title);
-  console.log("ingredients===", ingredients);
-  console.log("video===", video);
+  let isDisabled = true;
+
+  if (photo && title && ingredients && video) {
+    isDisabled = false;
+  }
+
+  const handleCloseSuccess = () => {
+    setShowModalSuccess(false);
+  };
 
   const handleFileChange = (event) => {
     let temp = event.target.files[0];
@@ -66,102 +82,19 @@ function AddRecipe() {
     }
   }, [isAuth, navigate]);
 
-  // useEffect(() => {
-  //   document
-  //     .getElementById("title")
-  //     .addEventListener("keydown", function (event) {
-  //       if (event.key === "Enter") {
-  //         event.preventDefault();
-  //       }
-  //     });
+  const handleIngredientsChange = (event) => {
+    const ingredientsText = event.target.value;
+    const formattedIngredients = ingredientsText
+      .split("\n")
+      .map((line) => `--${line.trim()}`)
+      .join("\n");
 
-  //   document
-  //     .getElementById("video")
-  //     .addEventListener("keydown", function (event) {
-  //       if (event.key === "Enter") {
-  //         event.preventDefault();
-  //       }
-  //     });
-
-  //   document
-  //     .getElementById("add-recipe-form")
-  //     .addEventListener("submit", function (event) {
-  //       var title = document.getElementById("title").value;
-  //       var ingredients = document.getElementById("ingredients").value;
-
-  //       if (!title) {
-  //         alert("Please enter a title for the recipe");
-  //         return;
-  //       }
-  //       if (!ingredients) {
-  //         alert("Please enter the ingredients for the recipe");
-  //         return;
-  //       }
-
-  //       var file = document.getElementById("file-input").value;
-
-  //       if (file.length < 1) {
-  //         alert("Please add photo");
-  //       }
-
-  //       if (file.length > 1) {
-  //         alert("Recipe added successfully");
-  //       }
-  //     });
-  // }, [navigate]);
-
-  const fileInput = useRef(null);
-
-  const handleAddRecipes = async (event) => {
-    event.preventDefault();
-    try {
-      const { title, ingredients, video } = event.target.elements;
-      const formData = new FormData();
-      formData.append("file", fileInput.current.files[0]); //photo
-
-      setIsLoading(true);
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${user.token}`,
-        },
-      };
-
-      let data = new FormData();
-      data.append("photo", photo);
-      data.append("title", title);
-      data.append("ingredients", ingredients);
-      data.append("video", video);
-
-      // send photo to recipe_photos db
-      await axios.post(
-        `${process.env.REACT_APP_URL_BACKEND}/users/recipes/add/photos`,
-        formData
-      );
-
-      // send title & ingredients to recipes db
-      await axios.post(
-        `${process.env.REACT_APP_URL_BACKEND}/users/recipes/add`,
-        { title: title.value, ingredients: ingredients.value }
-      );
-
-      // send video to recipe_videos db
-      await axios.post(
-        `${process.env.REACT_APP_URL_BACKEND}/users/recipes/add/videos`,
-        { video: video.value }
-      );
-
-      navigate("/");
-    } catch (error) {
-      console.error(error);
-      alert(
-        "An error occurred while trying to add recipe. Please try again later."
-      );
-    }
+    setIngredients(formattedIngredients);
   };
 
   const handleAddRecipe = async () => {
     try {
+      setIsLoading(true);
       if (!photo || !ingredients || !title || !video) {
         setErrMsg("Please fill all requirement");
         setShowModal(true);
@@ -169,12 +102,6 @@ function AddRecipe() {
       } else {
         // setIsErr(false);
       }
-
-      // const formData = new FormData();
-      // formData.append("title", title);
-      // formData.append("ingredients", ingredients);
-      // formData.append("photo", photo);
-      // formData.append("video", video);
 
       await axios.post(
         `${process.env.REACT_APP_URL_BACKEND}/users/recipes/add`,
@@ -192,8 +119,14 @@ function AddRecipe() {
           },
         }
       );
+      setIsLoading(false);
+      setShowModalSuccess(true);
     } catch (error) {
       console.log("ERROR---", error);
+      setErrMsg(error?.response?.data?.message);
+      setShowModal(true);
+
+      setIsLoading(false);
     }
   };
 
@@ -211,6 +144,21 @@ function AddRecipe() {
       <Navbar />
 
       <section id="add-recipe">
+        <MyModal open={showModalSuccess} onClose={handleCloseSuccess}>
+          <MyCard>
+            <CardContent>
+              <Alert
+                variant="filled"
+                severity="success"
+                sx={{ justifyContent: "center" }}>
+                <strong style={{ fontSize: "16px" }}>
+                  Success update data!
+                </strong>
+              </Alert>
+            </CardContent>
+          </MyCard>
+        </MyModal>
+
         <MyModal open={showModal} onClose={handleClose}>
           <MyCard>
             <CardContent>
@@ -255,19 +203,6 @@ function AddRecipe() {
                   </div>
                 </div>
 
-                {/* <div className="add-photo">
-                  <Button variant="contained" component="label">
-                    Upload Photo
-                    <input
-                      hidden
-                      accept="image/*"
-                      multiple
-                      type="file"
-                      onChange={handleFileChange}
-                    />
-                  </Button>
-                </div> */}
-
                 {/* <!-- Input field for the title --> */}
                 <div className="form-group">
                   <label for="title"></label>
@@ -288,7 +223,7 @@ function AddRecipe() {
                     id="ingredients"
                     rows="3"
                     placeholder="Ingredients"
-                    onChange={(e) => setIngredients(e.target.value)}></textarea>
+                    onChange={handleIngredientsChange}></textarea>
                 </div>
 
                 {/* <!-- Input field for the video --> */}
@@ -303,7 +238,7 @@ function AddRecipe() {
                   />
                 </div>
                 {/* <!-- Submit button --> */}
-                <button
+                {/* <button
                   // type="submit"
                   className="btn btn-primary btn-lg"
                   onClick={(e) => {
@@ -311,7 +246,42 @@ function AddRecipe() {
                     handleAddRecipe();
                   }}>
                   Post
-                </button>
+                </button> */}
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  {isDisabled ? (
+                    <MyButton
+                      disabled
+                      variant="contained"
+                      color="primary"
+                      // fullWidth
+                      onClick={handleAddRecipe}>
+                      Submit
+                    </MyButton>
+                  ) : isLoading ? (
+                    <LoadingButton
+                      loading={isLoading}
+                      variant="contained"
+                      color="primary"
+                      // fullWidth
+                      sx={{
+                        borderRadius: "20px",
+                        marginTop: "20px",
+                        background: "#5e50a1",
+                        color: "black",
+                      }}
+                      onClick={handleAddRecipe}>
+                      {isLoading ? "Loading..." : "Submit"}
+                    </LoadingButton>
+                  ) : (
+                    <MyButton
+                      variant="contained"
+                      color="primary"
+                      // fullWidth
+                      onClick={handleAddRecipe}>
+                      Submit
+                    </MyButton>
+                  )}
+                </div>
               </form>
             </div>
           </div>

@@ -27,14 +27,14 @@
   z-index: 1;
 }
 
-.right-side {
+.right-sides {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.right-side h1 {
+.right-sides h1 {
   font-style: normal;
   font-weight: 700;
   font-size: 30px;
@@ -43,7 +43,7 @@
   color: #efc81a;
 }
 
-.right-side p {
+.right-sides p {
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -52,7 +52,7 @@
   color: #8692a6;
 }
 
-.right-side,
+.right-sides,
 .form-group,
 .form-check {
   font-style: normal;
@@ -62,14 +62,14 @@
   color: #696f79;
 }
 
-.right-side input[type="email"]::placeholder,
+.right-sides input[type="email"]::placeholder,
 input[type="password"]::placeholder,
 input[type="text"]::placeholder,
 input[type="number"]::placeholder {
   filter: brightness(150%);
 }
 
-.right-side input[type="email"]:hover,
+.right-sides input[type="email"]:hover,
 input[type="password"]:hover,
 input[type="text"]:hover,
 input[type="number"]:hover {
@@ -79,7 +79,7 @@ input[type="number"]:hover {
   border-radius: 6px;
 }
 
-.right-side input[type="email"],
+.right-sides input[type="email"],
 input[type="password"],
 input[type="text"],
 input[type="number"] {
@@ -92,18 +92,18 @@ input[type="checkbox"]:checked {
   background-color: #efc81a;
 }
 
-.right-side .btn {
+.right-sides .btn {
   background: #efc81a;
   border-color: #efc81a;
   width: 400px;
 }
 
-.right-side .btn:hover {
+.right-sides .btn:hover {
   background-color: rgba(239, 200, 26, 0.8);
   border-color: rgba(239, 200, 26, 0.8);
 }
 
-.right-side .already-have-account {
+.right-sides .already-have-account {
   font-style: normal;
   font-weight: 500;
   font-size: 13px;
@@ -113,7 +113,7 @@ input[type="checkbox"]:checked {
   margin-bottom: 20px;
 }
 
-.right-side .login {
+.right-sides .login {
   color: #efc81a;
   text-decoration: none;
 }

@@ -46,7 +46,7 @@ const SignUp = () => {
             </div>
           </div>
           {/* <!--@ Right Side / form --> */}
-          <div className="col-6 right-side">
+          <div className="col-6 right-sides">
             <form>
               {/* <!--@ Input Name --> */}
               <div className="mb-3 form-group">

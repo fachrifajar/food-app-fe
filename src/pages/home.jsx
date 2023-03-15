@@ -21,7 +21,7 @@ function Home() {
   const [titlez, setTitlez] = React.useState("Search Recipes...");
   const [disablePagination, setDisablePagination] = React.useState(false);
 
-  console.log("newRecipes---", newRecipes)
+  console.log("newRecipes---", newRecipes);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
