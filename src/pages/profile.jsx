@@ -211,9 +211,6 @@ function Profile() {
   };
 
   React.useEffect(() => {
-    // const isLogin = localStorage.getItem("isLogin");
-    // const token = localStorage.getItem("token");
-
     if (!isAuth) {
       navigate("/");
     }
@@ -323,18 +320,10 @@ function Profile() {
     setIngredients(formattedIngredients);
   };
 
-  // const handleFileChanges = (event) => {
-  //   let temp = event.target.files[0];
-  //   // setPhoto(`${temp.name}/${uuidv4()}`);
-  //   setPhoto(temp);
-  //   setIsSubmitedEdit(true);
-  // };
-
   const handleFileChanges = (event) => {
     setPhoto(event.target.files[0]);
     setIsSubmitedEdit(true);
   };
-
 
   console.log("photo=>", photo);
 
@@ -350,7 +339,6 @@ function Profile() {
           ingredients,
           photo,
         },
-        // formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
