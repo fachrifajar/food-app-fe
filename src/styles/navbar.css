@@ -31,3 +31,13 @@
   color: #ffffff;
   border-color: gray;
 }
+
+@media (max-width: 770px) {
+  .navbar #logout-button button {
+    display: none;
+  }
+
+  #navbar-desktop .navbar-profile-picture img {
+    display: none;
+  }
+}

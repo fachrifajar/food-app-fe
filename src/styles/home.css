@@ -143,6 +143,55 @@
   z-index: 0;
   right: 0;
 }
+
+@media (max-width: 575px) {
+  #header {
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+  }
+
+  #header h1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 70px;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+    color: #2e266f;
+    margin-top: 100px;
+  }
+
+  #header .line-background {
+    height: 100vh;
+    width: 300px;
+    position: absolute;
+    background-color: #efc81a;
+    z-index: 0;
+    right: 0;
+  }
+
+  #header .col-6 img {
+    margin-left: 220px;
+  }
+
+  #header .background-1 {
+    position: absolute;
+    z-index: 1;
+  }
+
+  #header .background-2 {
+    position: relative;
+    left: -50px;
+  }
+
+  #header .clone {
+    position: relative;
+    bottom: -20px;
+  }
+}
+
 /*  @END OF HEADER */
 
 /*  @NEW RECIPE / content-1 */
@@ -314,19 +363,19 @@
   text-overflow: ellipsis;
 }
 
-#home-desktop-version .pagination .page-link{
+#home-desktop-version .pagination .page-link {
   background-color: white;
   border: gray 5px bold;
   color: #2e266f;
 }
 
-#home-desktop-version .pagination .page-link:hover{
+#home-desktop-version .pagination .page-link:hover {
   background-color: rgba(239, 200, 26, 0.8);
   border: rgba(239, 200, 26, 0.8);
   color: #2e266f;
 }
 
-#home-desktop-version .pagination .page-link.active{
+#home-desktop-version .pagination .page-link.active {
   background-color: rgba(239, 200, 26, 0.8);
   border: rgba(239, 200, 26, 0.8);
   color: #2e266f;
@@ -404,3 +453,5 @@ footer p {
   border-radius: 8px;
   scroll-snap-align: start;
 } */
+
+

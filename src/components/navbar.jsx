@@ -164,26 +164,6 @@ const Navbar = () => {
               </div>
             )
           ) : null}
-
-          {/* {isAuth !== null ? (
-            profPict !== null ? (
-              <div className="navbar-profile-picture">
-                <img
-                  src={`https://res.cloudinary.com/daouvimjz/image/upload/${profPict}`}
-                  alt="user pp"
-                />
-              </div>
-            ) : (
-              <div className="navbar-profile-picture">
-                <img
-                  src={`https://res.cloudinary.com/daouvimjz/image/upload/v1671522875/Instagram_default_profile_kynrq6.jpg`}
-                  alt="default user pp"
-                />
-              </div>
-            )
-          ) : (
-            null()
-          )} */}
         </div>
       </nav>
       <div className="navbar-modal">

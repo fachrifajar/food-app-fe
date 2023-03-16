@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/home.css";
-import "../styles/mobile-home.css";
+// import "../styles/mobile-home.css";
 import Helmet from "react-helmet";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
@@ -128,7 +128,7 @@ function Home() {
           <div className="container">
             <div className="row align-items-center">
               {/* <!-- ! left side --> */}
-              <div className="col-xxl-5 col-xl-4 col-lg-3 col-md-12 col-sm-2">
+              <div className="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5">
                 <h1>Discover Recipe & Delicious Food</h1>
                 <div className="mt-4">
                   <form>
@@ -228,10 +228,7 @@ function Home() {
                           `${process.env.REACT_APP_URL_BACKEND}/users/recipes/search/${newRecipes?.slug}`
                         )
                         .then((response) => {
-                          // console.log("tes1");
-                          // console.log(response);
-                          // console.log(newRecipes);
-                          // console.log("tes2");
+                    
                           dispatch(
                             recipeReducer.setDetail({
                               data: newRecipes,
@@ -356,7 +353,7 @@ function Home() {
         {/* <-- end of footer --> */}
       </section>
 
-      <section id="mobile-version">
+      {/* <section id="mobile-version">
         <section id="mobile-header">
           <div className="container">
             <div className="row">
@@ -574,7 +571,7 @@ function Home() {
             <i className="fas fa-user"></i>
           </Link>
         </footer>
-      </section>
+      </section> */}
     </div>
   );
 }

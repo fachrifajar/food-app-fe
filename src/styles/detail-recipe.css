@@ -201,3 +201,12 @@ footer p {
   color: #707070;
 }
 /* @ end of footer css */
+@media (max-width: 575px) {
+  footer {
+    display: none;
+  }
+
+  footer h2 {
+    display: none;
+  }
+}
