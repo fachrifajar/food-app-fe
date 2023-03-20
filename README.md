@@ -27,7 +27,7 @@ This project is built with the following technologies:
 
 ## Demo
 
-You can see a live demo of the app at [food-app-fe.vercel.app/](https://food-app-fe.vercel.app/).
+You can see a live demo of the app at [food-app-recipe-fe.vercel.app/]food-app-recipe-fe.vercel.app/).
 
 ## Contributions
 
