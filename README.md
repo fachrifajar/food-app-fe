@@ -8,6 +8,7 @@ This is a web application for finding and sharing recipes. Users can search for 
 - Save and organize your favorite recipes
 - Create and share your own recipes
 - View detailed information about each recipe, including ingredients, instructions, and nutritional information
+- CRUD your own recipes 
 
 ## Technologies
 
